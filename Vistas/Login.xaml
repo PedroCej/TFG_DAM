@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProyectoTFG.Vistas.Login"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Padding="25"
+    NavigationPage.HasNavigationBar="False">
+
+    <Grid RowSpacing="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.05*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.05*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <Label
+            Grid.Row="0"
+            Grid.Column="1"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            Text="Seleccionar perfil" />
+        <ScrollView Grid.Row="1" Grid.Column="1">
+
+            <StackLayout
+                x:Name="miStack1"
+                HorizontalOptions="Center"
+                Spacing="50"
+                VerticalOptions="Center">
+
+                <!--  Boton perfil  -->
+                <VerticalStackLayout Spacing="10">
+                    <ImageButton
+                        Clicked="ImageButton_Invitado"
+                        CornerRadius="75"
+                        HeightRequest="150"
+                        SemanticProperties.Description="Iniciar sesión como invitado"
+                        Source="anadir_perfil.png"
+                        ToolTipProperties.Text="Perfil 1"
+                        WidthRequest="150" />
+                    <Label HorizontalOptions="Center" Text="Invitado" />
+                </VerticalStackLayout>
+                <!--  Boton Invitado  -->
+                <VerticalStackLayout Spacing="10">
+                    <ImageButton
+                        Clicked="ImageButton_Usuario"
+                        CornerRadius="75"
+                        HeightRequest="150"
+                        SemanticProperties.Description="Iniciar sesión con este usuario"
+                        Source="anadir_perfil.png"
+                        ToolTipProperties.Text="Perfil 1"
+                        WidthRequest="150" />
+                    <Label
+                        x:Name="txtPerfil"
+                        HorizontalOptions="Center"
+                        Text="Perfil 1" />
+                </VerticalStackLayout>
+
+            </StackLayout>
+
+        </ScrollView>
+
+        <StackLayout
+            Grid.Row="2"
+            Grid.Column="1"
+            Orientation="Vertical"
+            Spacing="10">
+            <Entry
+                x:Name="txtUser"
+                HeightRequest="50"
+                MaximumWidthRequest="600"
+                Placeholder="Usuario"
+                SemanticProperties.Description="nombre de usuario"
+                ToolTipProperties.Text="nombre de usuario">
+                <FlyoutBase.ContextFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Clicked="MenuFlyoutItem_Clicked" Text="Borrar todo">
+                            <MenuFlyoutItem.KeyboardAccelerators>
+                                <KeyboardAccelerator Key="B" Modifiers="Ctrl" />
+                            </MenuFlyoutItem.KeyboardAccelerators>
+                        </MenuFlyoutItem>
+                        <MenuFlyoutItem Clicked="MenuFlyoutItem_Clicked_1" Text="Guardar Usuario">
+                            <MenuFlyoutItem.KeyboardAccelerators>
+                                <KeyboardAccelerator Key="G" Modifiers="Ctrl" />
+                            </MenuFlyoutItem.KeyboardAccelerators>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </FlyoutBase.ContextFlyout>
+            </Entry>
+            <Entry
+                x:Name="txtPass"
+                HeightRequest="50"
+                IsPassword="True"
+                MaximumWidthRequest="600"
+                Placeholder="Contraseña"
+                SemanticProperties.Description="contraseña"
+                ToolTipProperties.Text="contraseña">
+                <FlyoutBase.ContextFlyout>
+                    <MenuFlyout>
+                        <MenuFlyoutItem Clicked="MenuFlyoutItem_Clicked" Text="Borrar todo">
+                            <MenuFlyoutItem.KeyboardAccelerators>
+                                <KeyboardAccelerator Key="B" Modifiers="Ctrl" />
+                            </MenuFlyoutItem.KeyboardAccelerators>
+                        </MenuFlyoutItem>
+                    </MenuFlyout>
+                </FlyoutBase.ContextFlyout>
+            </Entry>
+            <StackLayout
+                x:Name="miStack2"
+                HorizontalOptions="Fill"
+                MaximumWidthRequest="600"
+                Spacing="10">
+                <Button
+                    Clicked="Button_Login"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    MaximumWidthRequest="600"
+                    Text="Iniciar sesión" />
+                <Button
+                    Clicked="Button_Register"
+                    HeightRequest="50"
+                    HorizontalOptions="FillAndExpand"
+                    MaximumWidthRequest="600"
+                    Text="Registrarse" />
+            </StackLayout>
+            <Button
+                Clicked="Button_Clicked"
+                MaximumWidthRequest="600"
+                Text="Salir" />
+        </StackLayout>
+    </Grid>
+
+</ContentPage>
+
+
+

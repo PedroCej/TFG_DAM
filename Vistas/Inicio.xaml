@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProyectoTFG.Vistas.Inicio"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    NavigationPage.HasNavigationBar="False">
+    <Grid RowSpacing="10">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.05*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.05*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+            <!--  Cabecera  -->
+
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+            <!--  Contenido  -->
+            <ScrollView>
+                <StackLayout Orientation="Vertical" Spacing="10">
+                    <Label
+                        FontSize="Large"
+                        HorizontalOptions="Center"
+                        Text="Bienvenido a .NET MAUI!"
+                        VerticalOptions="Center" />
+                </StackLayout>
+            </ScrollView>
+        </VerticalStackLayout>
+
+        <VerticalStackLayout Grid.Row="2" Grid.Column="1">
+            <!--  Footer  -->
+
+        </VerticalStackLayout>
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="ProyectoTFG.Vistas._AppShell_Inicio"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:ProyectoTFG"
+    xmlns:misPaginas="clr-namespace:ProyectoTFG.Vistas"
+    Title="ProyectoTFG"
+    FlyoutBackgroundColor="Black"
+    FlyoutHeaderBehavior="Fixed"
+    Shell.FlyoutBehavior="Flyout" 
+    Shell.FlyoutBackdrop="AliceBlue"
+    
+   >
+
+
+    <FlyoutItem Title="Inicio">
+        <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Tickets">
+        <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Tickets}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Técnico">
+        <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Tecnico}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Administración">
+        <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Admin}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Ajustes">
+        <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Ajustes}" />
+    </FlyoutItem>
+    <FlyoutItem Title="Salir">
+        <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Salir}" />
+    </FlyoutItem>
+    
+    
+</Shell>

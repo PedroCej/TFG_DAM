@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using ProyectoTFG.Vistas;
 
 namespace ProyectoTFG
 {
@@ -16,7 +17,7 @@ namespace ProyectoTFG
                 });
 
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
