@@ -6,32 +6,33 @@
     xmlns:local="clr-namespace:ProyectoTFG"
     xmlns:misPaginas="clr-namespace:ProyectoTFG.Vistas"
     Title="ProyectoTFG"
-    FlyoutBackgroundColor="Black"
-    FlyoutHeaderBehavior="Fixed"
-    Shell.FlyoutBehavior="Flyout" 
-    Shell.FlyoutBackdrop="AliceBlue"
-    
-   >
+    FlyoutBackgroundColor="#000000f3"
+    Shell.FlyoutBehavior="Locked"
+    Shell.FlyoutWidth="200">
 
 
-    <FlyoutItem Title="Inicio">
-        <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio}" />
+    <FlyoutItem
+        Title="Inicio"
+        FlyoutIcon="home.png"
+        Icon="home.png">
+        <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio}" Route="home" />
     </FlyoutItem>
-    <FlyoutItem Title="Tickets">
+    <FlyoutItem Title="Tickets" Icon="warning.png">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Tickets}" />
     </FlyoutItem>
-    <FlyoutItem Title="Técnico">
+    <FlyoutItem Title="Técnico" Icon="tecnico.png">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Tecnico}" />
     </FlyoutItem>
-    <FlyoutItem Title="Administración">
+    <FlyoutItem Title="Administración" Icon="admin.png">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Admin}" />
     </FlyoutItem>
-    <FlyoutItem Title="Ajustes">
+    <FlyoutItem Title="Ajustes" Icon="settings.png">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Ajustes}" />
     </FlyoutItem>
-    <FlyoutItem Title="Salir">
+    <FlyoutItem Title="Salir" Icon="salir.png">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Salir}" />
     </FlyoutItem>
-    
-    
+
+
+
 </Shell>

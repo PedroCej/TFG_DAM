@@ -34,16 +34,23 @@
             <Entry x:Name="txtNombre" Placeholder="Nombre" />
             <Entry x:Name="txtApellidos" Placeholder="Apellidos" />
             <Entry x:Name="txtEmail" Placeholder="Email" />
+            <Entry x:Name="txtApodo" Placeholder="Nombre de Usuario (Opcional)" />
             <Entry
-                x:Name="txtPassword"
+                x:Name="txtPass"
                 IsPassword="True"
                 Placeholder="Contraseña" />
             <Entry
-                x:Name="txtPassword2"
+                x:Name="txtPass2"
                 IsPassword="True"
                 Placeholder="Repetir contraseña" />
-            <Button x:Name="btnRegister" Text="Registrarse" />
-            <Button x:Name="btnCancelar" Text="Cancelar" />
+            <Button
+                x:Name="btnRegister"
+                Clicked="btnRegister_Clicked"
+                Text="Registrarse" />
+            <Button
+                x:Name="btnCancelar"
+                Clicked="btnCancelar_Clicked"
+                Text="Cancelar" />
         </VerticalStackLayout>
 
     </Grid>

@@ -1,6 +1,7 @@
 ﻿using Microsoft.Extensions.Logging;
 using ProyectoTFG.Vistas;
 
+
 namespace ProyectoTFG
 {
     public static class MauiProgram
@@ -15,6 +16,7 @@ namespace ProyectoTFG
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
+
 
 #if DEBUG
             builder.Logging.AddDebug();

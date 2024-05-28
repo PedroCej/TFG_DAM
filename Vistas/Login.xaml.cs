@@ -1,8 +1,13 @@
+using ProyectoTFG.Datos;
+
 namespace ProyectoTFG.Vistas;
+
 public partial class Login : ContentPage
 {
     string nombreUsuario = Preferences.Get("nombreUsuario", string.Empty);
     string contraseña = Preferences.Get("contrasena", string.Empty);
+    public DB db = new DB();
+
     /// <summary>
     /// Pagina de seleccion perfil
     /// </summary>
@@ -11,7 +16,6 @@ public partial class Login : ContentPage
         InitializeComponent();
         SizeChanged += OnPageSizeChanged;
         txtPerfil.Text = nombreUsuario;
-
     }
 
     void OnPageSizeChanged(object sender, EventArgs e)
@@ -56,11 +60,21 @@ public partial class Login : ContentPage
 
     private void Button_Login(object sender, EventArgs e)
     {
-        Application.Current.MainPage = new _AppShell_Inicio();
+       if(db.LoginUser(txtUser.Text, txtPass.Text))
+        {
+            Application.Current.MainPage = new _AppShell_Inicio();
+        }
+        else
+        {
+            DisplayAlert("Error", "Usuario o contraseña incorrectos", "Aceptar");
+        }
+        
     }
 
     private void Button_Clicked(object sender, EventArgs e)
     {
         Application.Current.Quit();
     }
+
+    
 }
