@@ -9,6 +9,7 @@ namespace ProyectoTFG.Datos
     {
         private readonly IMongoDatabase database;
         private readonly IMongoCollection<User> usersCollection;
+        private readonly IMongoCollection<Ticket> ticketsCollection;
 
         public DB()
         {
@@ -18,11 +19,12 @@ namespace ProyectoTFG.Datos
             var client = new MongoClient(settings);
             database = client.GetDatabase("ticketing");
             usersCollection = database.GetCollection<User>("users");
+            ticketsCollection = database.GetCollection<Ticket>("tickets");
         }
 
-        public bool ExisteUser(string email, string apodo)
+        public bool ExisteUser(string email)
         {
-            var filter = Builders<User>.Filter.Eq("Email", email) | Builders<User>.Filter.Eq("Apodo", apodo);
+            var filter = Builders<User>.Filter.Eq("Email", email) | Builders<User>.Filter.Eq("Apodo", email);
             var user = usersCollection.Find(filter).FirstOrDefault();
 
             if (user == null)
@@ -35,7 +37,7 @@ namespace ProyectoTFG.Datos
 
         public void MeterUser(string nombre, string apellidos, string email, string apodo, string pass, string rol)
         {
-            if (!ExisteUser(email, apodo)) // Si no hay ningun user con ese apodo o email
+            if (!ExisteUser(email)&& !ExisteUser(apodo)) // Si no hay ningun user con ese apodo o email
             {
                 User user = new User();
                 string hashedPassword = user.HashPassword(pass);
@@ -54,9 +56,15 @@ namespace ProyectoTFG.Datos
             
         }
 
+        public void MeterTicket(string titulo, string descripcion, string prioridad, DateTime fechaInicio, DateTime fechaFin, string estado, List<string> comentarios, User usuario, User asignado)
+        {
+            Ticket ticket = new Ticket { Titulo = titulo, Descripcion = descripcion, Prioridad = prioridad, FechaInicio = fechaInicio, FechaFin = fechaFin, Estado = estado, Comentarios = comentarios, Usuario = usuario, Asignado = asignado };
+            ticketsCollection.InsertOne(ticket);
+        }
+
         public bool LoginUser(string email, string password)
         {
-            var filter = Builders<User>.Filter.Eq("Email", email);
+            var filter = Builders<User>.Filter.Eq("Email", email) | Builders<User>.Filter.Eq("Apodo", email);
             var user = usersCollection.Find(filter).FirstOrDefault();
 
             if (user == null)
@@ -67,7 +75,10 @@ namespace ProyectoTFG.Datos
             // Verifica la contraseña
             return user.VerifyPassword(user.Pass, password);
         }
+
     }
+
+
 
 
 

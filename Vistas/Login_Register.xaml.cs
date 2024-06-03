@@ -28,4 +28,46 @@ public partial class Login_Register : ContentPage
     {
         Navigation.PopAsync();
     }
+
+    private void txtApodo_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (db.ExisteUser(txtApodo.Text))
+        {
+            lblErrorApodo.IsVisible = true;
+            btnRegister.IsEnabled = false;
+        }
+        else
+        {
+            lblErrorApodo.IsVisible = false;
+            btnRegister.IsEnabled = true;
+        }
+    }
+
+    private void txtEmail_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (db.ExisteUser(txtEmail.Text))
+        {
+            lblErrorEmail.IsVisible = true;
+            btnRegister.IsEnabled = false;
+        }
+        else
+        {
+            lblErrorEmail.IsVisible = false;
+            btnRegister.IsEnabled = true;
+        }
+    }
+
+    private void txtPass_TextChanged(object sender, TextChangedEventArgs e)
+    {
+        if (txtPass.Text != txtPass2.Text)
+        {
+            lblErrorPass.IsVisible = true;
+            btnRegister.IsEnabled = false;
+        }
+        else
+        {
+            lblErrorPass.IsVisible = false;
+            btnRegister.IsEnabled = true;
+        }
+    }
 }

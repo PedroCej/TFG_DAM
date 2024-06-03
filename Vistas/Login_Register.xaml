@@ -4,7 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Padding="25"
-    NavigationPage.HasNavigationBar="False">
+    NavigationPage.HasNavigationBar="False"
+    BackgroundColor="Transparent">
 
     <Grid RowSpacing="10">
         <Grid.ColumnDefinitions>
@@ -33,16 +34,37 @@
             VerticalOptions="Center">
             <Entry x:Name="txtNombre" Placeholder="Nombre" />
             <Entry x:Name="txtApellidos" Placeholder="Apellidos" />
-            <Entry x:Name="txtEmail" Placeholder="Email" />
-            <Entry x:Name="txtApodo" Placeholder="Nombre de Usuario (Opcional)" />
+            <Entry
+                x:Name="txtEmail"
+                Placeholder="Email"
+                TextChanged="txtEmail_TextChanged" />
+            <Label
+                x:Name="lblErrorEmail"
+                IsVisible="False"
+                Text="Correo electrónico ya está en uso"
+                TextColor="Red" />
+            <Entry
+                x:Name="txtApodo"
+                Placeholder="Nombre de Usuario (Opcional)"
+                TextChanged="txtApodo_TextChanged" />
+            <Label
+                x:Name="lblErrorApodo"
+                IsVisible="False"
+                Text="Nombre de usuario ya está en uso"
+                TextColor="Red" />
             <Entry
                 x:Name="txtPass"
                 IsPassword="True"
-                Placeholder="Contraseña" />
+                Placeholder="Contraseña" TextChanged="txtPass_TextChanged"/>
             <Entry
                 x:Name="txtPass2"
                 IsPassword="True"
-                Placeholder="Repetir contraseña" />
+                Placeholder="Repetir contraseña" TextChanged="txtPass_TextChanged"/>
+            <Label
+                x:Name="lblErrorPass"
+                IsVisible="False"
+                Text="Las contraseñas no coinciden"
+                TextColor="Red" />
             <Button
                 x:Name="btnRegister"
                 Clicked="btnRegister_Clicked"

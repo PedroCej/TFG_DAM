@@ -60,7 +60,7 @@ public partial class Login : ContentPage
 
     private void Button_Login(object sender, EventArgs e)
     {
-       if(db.LoginUser(txtUser.Text, txtPass.Text))
+       if(db.LoginUser(txtUser.Text, txtPass.Text) && txtPerfil.Text != null && txtPass.Text != null)
         {
             Application.Current.MainPage = new _AppShell_Inicio();
         }
@@ -71,9 +71,14 @@ public partial class Login : ContentPage
         
     }
 
-    private void Button_Clicked(object sender, EventArgs e)
+    private async void Button_Clicked(object sender, EventArgs e)
     {
-        Application.Current.Quit();
+        bool salir = await DisplayAlert("Salir", "¿Estás seguro de que quieres salir?", "Sí", "No");
+        if(salir)
+        {
+            Application.Current.Quit();
+        }
+        
     }
 
     

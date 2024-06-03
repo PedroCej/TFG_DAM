@@ -60,9 +60,11 @@ namespace ProyectoTFG.Modelos
 
         public bool VerifyPassword(string pass, string hashedPassword)
         {
+            
             // Verifica la contraseña con el hash almacenado
-            bool isMatch = BCrypt.Net.BCrypt.Verify(hashedPassword, pass);
-            return isMatch;
+            if (hashedPassword!= null && pass != null)
+            return BCrypt.Net.BCrypt.Verify(hashedPassword, pass);
+            else return false;
         }
     }
 }
