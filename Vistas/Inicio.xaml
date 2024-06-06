@@ -36,9 +36,18 @@
             </ScrollView>
         </VerticalStackLayout>
 
-        <VerticalStackLayout Grid.Row="2" Grid.Column="1">
+        <VerticalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End" Padding="0,0,0,15">
             <!--  Footer  -->
-
+            <ImageButton
+                BackgroundColor="#80099993"
+                Clicked="ImageButton_Clicked"
+                HorizontalOptions="Center"
+                Source="mas.png"
+                Padding="15"
+                MaximumWidthRequest="100"
+                MaximumHeightRequest="100"
+                CornerRadius="100"
+                />
         </VerticalStackLayout>
 
     </Grid>

@@ -1,0 +1,192 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="ProyectoTFG.Vistas.Inicio_Tickets_Detalle"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    Title="Inicio_Tickets_Detalle"
+    BackgroundColor="Transparent">
+    <Grid
+        BackgroundColor="#01999999"
+        ColumnDefinitions="0.1*,*,0.1*"
+        RowDefinitions="0.1*,auto,0.1*">
+
+        <Frame
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="200,0,0,0"
+            Padding="20"
+            BackgroundColor="#80666666"
+            ZIndex="10">
+            <VerticalStackLayout Spacing="15">
+                <Entry
+                    x:Name="Titulo"
+                    BackgroundColor="#666666"
+                    HorizontalOptions="StartAndExpand"
+                    IsEnabled="False"
+                    MaximumWidthRequest="500"
+                    PlaceholderColor="#cccccc" />
+                <Editor
+                    x:Name="Descripcion"
+                    AutoSize="TextChanges"
+                    BackgroundColor="#666666"
+                    IsEnabled="False"
+                    MaxLength="500"
+                    MaximumHeightRequest="200"
+                    PlaceholderColor="#cccccc"
+                    VerticalTextAlignment="Start" />
+                <Grid
+                    ColumnDefinitions="*,0.5*"
+                    ColumnSpacing="50"
+                    RowDefinitions="*">
+                    <Picker
+                        x:Name="Categoria"
+                        Grid.Column="1"
+                        IsEnabled="False" />
+                    <Grid
+                        Grid.Column="0"
+                        ColumnDefinitions="*,*,*"
+                        RowDefinitions="*,*">
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            HorizontalOptions="Start"
+                            HorizontalTextAlignment="Center"
+                            Text="No muy importante"
+                            TextColor="White"
+                            VerticalTextAlignment="Center" />
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            HorizontalTextAlignment="Center"
+                            Text="Medio"
+                            TextColor="White"
+                            VerticalTextAlignment="End" />
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            HorizontalOptions="End"
+                            HorizontalTextAlignment="Center"
+                            Text="Muy importante"
+                            TextColor="White"
+                            VerticalTextAlignment="End" />
+                        <Slider
+                            x:Name="Prioridad"
+                            Grid.Row="1"
+                            Grid.ColumnSpan="3"
+                            Margin="30,0,30,0"
+                            IsEnabled="False"
+                            Maximum="3.01"
+                            Minimum="1"
+                            ValueChanged="Prioridad_ValueChanged" />
+                    </Grid>
+
+                </Grid>
+
+
+                <Grid
+                    ColumnDefinitions="auto,auto,*"
+                    ColumnSpacing="20"
+                    RowDefinitions="*,*">
+                    <HorizontalStackLayout Grid.Column="0" Spacing="5">
+                        <Label Text="Fecha de creación: " />
+                        <Label x:Name="FechaCreacion" FontAttributes="Bold" />
+                    </HorizontalStackLayout>
+
+                    <HorizontalStackLayout Grid.Column="1" Spacing="5">
+                        <Label Text="Última modificación: "  />
+                        <Label x:Name="FechaModificacion" FontAttributes="Bold"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Grid.Row="1" Grid.Column="0" Spacing="5">
+                        <Label Text="Creado por: " />
+                        <Label x:Name="Usuario" FontAttributes="Bold"/>
+                    </HorizontalStackLayout>
+                    <HorizontalStackLayout Grid.Row="1" Grid.Column="1" Spacing="5">
+                        <Label Text="Asignado a: " />
+                        <Label x:Name="Tecnico" FontAttributes="Bold"/>
+                    </HorizontalStackLayout>
+                    <Picker
+                        x:Name="Estado"
+                        Grid.RowSpan="2"
+                        Grid.Column="2"
+                        IsEnabled="False"
+                        VerticalOptions="Center">
+                        <Picker.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Sin seguimiento</x:String>
+                                <x:String>En proceso</x:String>
+                                <x:String>Terminado</x:String>
+                            </x:Array>
+                        </Picker.ItemsSource>
+                    </Picker>
+                </Grid>
+
+                <Editor
+                    x:Name="Comentarios"
+                    AutoSize="TextChanges"
+                    BackgroundColor="#666666"
+                    IsEnabled="False"
+                    MaxLength="500"
+                    MaximumHeightRequest="200"
+                    Placeholder="Añadir comentario (max. 500)"
+                    PlaceholderColor="#cccccc"
+                    VerticalTextAlignment="Start" />
+
+
+                <StackLayout
+                    HorizontalOptions="Fill"
+                    Orientation="Horizontal"
+                    Spacing="15">
+                    <StackLayout
+                        HorizontalOptions="FillAndExpand"
+                        Orientation="Vertical"
+                        Spacing="15"
+                        VerticalOptions="FillAndExpand">
+                        <Button
+                            x:Name="btnHabilitar"
+                            BackgroundColor="#666666"
+                            Clicked="btnHabilitar_Clicked"
+                            HorizontalOptions="FillAndExpand"
+                            Text="Habilitar edición"
+                            TextColor="White"
+                            VerticalOptions="FillAndExpand" />
+                        <Button
+                            x:Name="btnAplicar"
+                            BackgroundColor="#666666"
+                            Clicked="btnAplicar_Clicked"
+                            HorizontalOptions="FillAndExpand"
+                            Text="Aplicar cambios"
+                            TextColor="White" 
+                            IsEnabled="False"/>
+                        <Button
+                            x:Name="btnVoler"
+                            BackgroundColor="#666666"
+                            Clicked="btnVoler_Clicked"
+                            HorizontalOptions="FillAndExpand"
+                            Text="Volver"
+                            TextColor="White" />
+                    </StackLayout>
+
+                    <ImageButton
+                        x:Name="btnImagen"
+                        BackgroundColor="Transparent"
+                        Clicked="btnImagen_Clicked"
+                        HorizontalOptions="FillAndExpand"
+                        MaximumHeightRequest="200"
+                        Source="images.png"
+                        VerticalOptions="Center" />
+
+                </StackLayout>
+            </VerticalStackLayout>
+        </Frame>
+
+        <Button
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            BackgroundColor="Transparent"
+            Clicked="btnVoler_Clicked" />
+
+    </Grid>
+</ContentPage>

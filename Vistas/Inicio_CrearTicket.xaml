@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoTFG.Vistas.Inicio_CrearTicket"
+             Title="Inicio_CrearTicket" 
+             BackgroundColor="Transparent">
+    <Grid ColumnDefinitions="0.1*,*,0.1*" RowDefinitions="0.1*,auto,0.1*" BackgroundColor="#01999999" >
+
+        <Frame Margin="200,0,0,0" Grid.Column="1" Grid.Row="1" BackgroundColor="#80666666" Padding="20" MaximumWidthRequest="800" ZIndex="10">
+            <VerticalStackLayout Spacing="15">
+                <Entry x:Name="Titulo" Placeholder="Titulo *" BackgroundColor="#666666" PlaceholderColor="#cccccc"/>
+                <Editor x:Name="Descripcion" Placeholder="Descripción del problema (max. 500) *" AutoSize="TextChanges" MaximumHeightRequest="200" MaxLength="500" BackgroundColor="#666666" PlaceholderColor="#cccccc" MinimumHeightRequest="100" VerticalTextAlignment="Start"/>
+                <Picker x:Name="miPicker" Title="Seleccione una categoría *" />
+                <Grid RowDefinitions="*,*"
+                      ColumnDefinitions="*,*,*">
+                    <Label Grid.Row="0" Grid.Column="0" Text="No muy importante" TextColor="White" VerticalTextAlignment="Center" HorizontalTextAlignment="Center" HorizontalOptions="Start"/>
+                    <Label Grid.Row="0" Grid.Column="1" Text="Medio" TextColor="White" VerticalTextAlignment="End" HorizontalTextAlignment="Center" HorizontalOptions="Center"/>
+                    <Label Grid.Row="0" Grid.Column="2" Text="Muy importante" TextColor="White" VerticalTextAlignment="End" HorizontalTextAlignment="Center" HorizontalOptions="End" />
+                    <Slider x:Name="miSlider" Grid.Row="1" Grid.ColumnSpan="3"  Minimum="1" Maximum="3.01" ValueChanged="miSlider_ValueChanged" Margin="30,0,30,0"/>
+                </Grid>
+                <Label Text="Añade una foto del problema" HorizontalOptions="CenterAndExpand"/>
+                <ImageButton x:Name="btnImagen" Source="images.png" Clicked="OnSelectImageButtonClicked" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" MaximumHeightRequest="200"/>
+                <StackLayout Spacing="15" HorizontalOptions="Fill" Orientation="Horizontal">
+                    <Button x:Name="btnEnviar" Clicked="btnEnviar_Clicked" Text="Enviar" BackgroundColor="#666666" TextColor="White" HorizontalOptions="FillAndExpand"/>
+                    <Button Text="Cancelar" BackgroundColor="#666666" TextColor="White" Clicked="Button_Clicked" HorizontalOptions="FillAndExpand"/>
+                </StackLayout>
+            </VerticalStackLayout>
+        </Frame>
+
+        <Button Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Grid.RowSpan="3"  BackgroundColor="Transparent" Clicked="Button_Clicked"/>
+
+    </Grid>
+</ContentPage>

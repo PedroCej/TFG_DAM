@@ -48,17 +48,20 @@
                 <!--  Boton Invitado  -->
                 <VerticalStackLayout Spacing="10">
                     <ImageButton
+                        x:Name="btnUser"
                         Clicked="ImageButton_Usuario"
+                        
                         CornerRadius="75"
                         HeightRequest="150"
                         SemanticProperties.Description="Iniciar sesión con este usuario"
                         Source="anadir_perfil.png"
                         ToolTipProperties.Text="Perfil 1"
-                        WidthRequest="150" />
+                        WidthRequest="150" 
+                        IsVisible="False"/>
                     <Label
                         x:Name="txtPerfil"
                         HorizontalOptions="Center"
-                        Text="Perfil 1" />
+                        IsVisible="False"/>
                 </VerticalStackLayout>
 
             </StackLayout>
@@ -75,6 +78,7 @@
                 HeightRequest="50"
                 MaximumWidthRequest="600"
                 Placeholder="Usuario"
+                Completed="txtUser_Completed"
                 SemanticProperties.Description="nombre de usuario"
                 ToolTipProperties.Text="nombre de usuario">
                 <FlyoutBase.ContextFlyout>
@@ -89,9 +93,9 @@
                                 <KeyboardAccelerator Key="G" Modifiers="Ctrl" />
                             </MenuFlyoutItem.KeyboardAccelerators>
                         </MenuFlyoutItem>
-                        <MenuFlyoutItem Clicked="Button_Login" Text="Iniciar sesión">
+                        <MenuFlyoutItem Clicked="MenuFlyoutItem_Clicked_2" Text="Olvidar Usuario">
                             <MenuFlyoutItem.KeyboardAccelerators>
-                                <KeyboardAccelerator Key="Enter"/>
+                                <KeyboardAccelerator Key="O" Modifiers="Ctrl" />
                             </MenuFlyoutItem.KeyboardAccelerators>
                         </MenuFlyoutItem>
                     </MenuFlyout>

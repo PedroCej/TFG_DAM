@@ -1,11 +1,11 @@
 using ProyectoTFG.Datos;
+using ProyectoTFG.Modelos;
 
 namespace ProyectoTFG.Vistas;
 
 public partial class Login : ContentPage
 {
     string nombreUsuario = Preferences.Get("nombreUsuario", string.Empty);
-    string contraseña = Preferences.Get("contrasena", string.Empty);
     public DB db = new DB();
 
     /// <summary>
@@ -15,7 +15,12 @@ public partial class Login : ContentPage
     {
         InitializeComponent();
         SizeChanged += OnPageSizeChanged;
-        txtPerfil.Text = nombreUsuario;
+        if(nombreUsuario != null && nombreUsuario != string.Empty)
+        {
+            txtPerfil.Text = nombreUsuario;
+            verPerfil();
+        }
+            
     }
 
     void OnPageSizeChanged(object sender, EventArgs e)
@@ -47,22 +52,28 @@ public partial class Login : ContentPage
 
     private void Button_Register(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new Login_Register());
-
+        Navigation.PushAsync(new Login_Register(this));
     }
 
     private void MenuFlyoutItem_Clicked_1(object sender, EventArgs e)
     {
+        if(txtUser.Text == null || txtUser.Text == string.Empty)
+        {
+            DisplayAlert("Error", "Introduce un nombre de usuario", "Aceptar");
+            return;
+        }
         Preferences.Set("nombreUsuario", txtUser.Text);
         nombreUsuario = Preferences.Get("nombreUsuario", string.Empty);
         txtPerfil.Text = nombreUsuario;
+
+        verPerfil();
     }
 
     private void Button_Login(object sender, EventArgs e)
     {
        if(db.LoginUser(txtUser.Text, txtPass.Text) && txtPerfil.Text != null && txtPass.Text != null)
         {
-            Application.Current.MainPage = new _AppShell_Inicio();
+            Application.Current.MainPage = new _AppShell_Inicio(txtUser.Text);
         }
         else
         {
@@ -81,5 +92,27 @@ public partial class Login : ContentPage
         
     }
 
-    
+    private void MenuFlyoutItem_Clicked_2(object sender, EventArgs e)
+    {
+        Preferences.Set("nombreUsuario", String.Empty);
+        ocultarPerfil();
+    }
+
+    public void verPerfil()
+    {
+        btnUser.IsVisible = true;
+        txtPerfil.Text = Preferences.Get("nombreUsuario", string.Empty);
+        txtPerfil.IsVisible = true;
+    }
+
+    public void ocultarPerfil()
+    {
+        btnUser.IsVisible = false;
+        txtPerfil.IsVisible = false;
+    }
+
+    private void txtUser_Completed(object sender, EventArgs e)
+    {
+        txtPass.Focus();
+    }
 }

@@ -6,4 +6,9 @@ public partial class Inicio : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void ImageButton_Clicked(object sender, EventArgs e)
+    {
+		Navigation.PushModalAsync(new Inicio_CrearTicket());
+    }
 }

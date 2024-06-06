@@ -32,12 +32,13 @@
             MaximumWidthRequest="600"
             Spacing="10"
             VerticalOptions="Center">
-            <Entry x:Name="txtNombre" Placeholder="Nombre" />
-            <Entry x:Name="txtApellidos" Placeholder="Apellidos" />
+            <Entry x:Name="txtNombre" Placeholder="Nombre *" Completed="EntryCompleted"/>
+            <Entry x:Name="txtApellidos" Placeholder="Apellidos" Completed="EntryCompleted"/>
             <Entry
                 x:Name="txtEmail"
-                Placeholder="Email"
-                TextChanged="txtEmail_TextChanged" />
+                Placeholder="Email *"
+                TextChanged="txtEmail_TextChanged"
+                Completed="EntryCompleted"/>
             <Label
                 x:Name="lblErrorEmail"
                 IsVisible="False"
@@ -45,8 +46,9 @@
                 TextColor="Red" />
             <Entry
                 x:Name="txtApodo"
-                Placeholder="Nombre de Usuario (Opcional)"
-                TextChanged="txtApodo_TextChanged" />
+                Placeholder="Nombre de Usuario"
+                TextChanged="txtApodo_TextChanged"
+                Completed="EntryCompleted"/>
             <Label
                 x:Name="lblErrorApodo"
                 IsVisible="False"
@@ -55,11 +57,13 @@
             <Entry
                 x:Name="txtPass"
                 IsPassword="True"
-                Placeholder="Contraseña" TextChanged="txtPass_TextChanged"/>
+                Placeholder="Contraseña *" TextChanged="txtPass_TextChanged"
+                Completed="EntryCompleted"/>
             <Entry
                 x:Name="txtPass2"
                 IsPassword="True"
-                Placeholder="Repetir contraseña" TextChanged="txtPass_TextChanged"/>
+                Placeholder="Repetir contraseña *" TextChanged="txtPass_TextChanged"
+                Completed="EntryCompleted"/>
             <Label
                 x:Name="lblErrorPass"
                 IsVisible="False"
@@ -74,6 +78,13 @@
                 Clicked="btnCancelar_Clicked"
                 Text="Cancelar" />
         </VerticalStackLayout>
+
+        <Label
+            Grid.Row="2"
+            Grid.Column="1"
+            FontSize="Small"
+            HorizontalOptions="Center"
+            Text="* Campos obligatorios" />
 
     </Grid>
 

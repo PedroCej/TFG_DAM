@@ -13,7 +13,8 @@ namespace ProyectoTFG.Datos
 
         public DB()
         {
-            const string connectionUri = "mongodb+srv://admin:IoRjIGht5MgXss4z@cluster0.oz2yuw8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+            //const string connectionUri = "mongodb+srv://admin:IoRjIGht5MgXss4z@cluster0.oz2yuw8.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0";
+            const string connectionUri = "mongodb://admin:IoRjIGht5MgXss4z@ac-ly1dpis-shard-00-00.oz2yuw8.mongodb.net:27017,ac-ly1dpis-shard-00-01.oz2yuw8.mongodb.net:27017,ac-ly1dpis-shard-00-02.oz2yuw8.mongodb.net:27017/?ssl=true&replicaSet=atlas-qsszly-shard-0&authSource=admin&retryWrites=true&w=majority&appName=Cluster0";
             var settings = MongoClientSettings.FromConnectionString(connectionUri);
             settings.ServerApi = new ServerApi(ServerApiVersion.V1);
             var client = new MongoClient(settings);
@@ -22,6 +23,9 @@ namespace ProyectoTFG.Datos
             ticketsCollection = database.GetCollection<Ticket>("tickets");
         }
 
+        //
+        //  Metodos de User   -----------------
+        //
         public bool ExisteUser(string email)
         {
             var filter = Builders<User>.Filter.Eq("Email", email) | Builders<User>.Filter.Eq("Apodo", email);
@@ -55,13 +59,6 @@ namespace ProyectoTFG.Datos
             }
             
         }
-
-        public void MeterTicket(string titulo, string descripcion, string prioridad, DateTime fechaInicio, DateTime fechaFin, string estado, List<string> comentarios, User usuario, User asignado)
-        {
-            Ticket ticket = new Ticket { Titulo = titulo, Descripcion = descripcion, Prioridad = prioridad, FechaInicio = fechaInicio, FechaFin = fechaFin, Estado = estado, Comentarios = comentarios, Usuario = usuario, Asignado = asignado };
-            ticketsCollection.InsertOne(ticket);
-        }
-
         public bool LoginUser(string email, string password)
         {
             var filter = Builders<User>.Filter.Eq("Email", email) | Builders<User>.Filter.Eq("Apodo", email);
@@ -76,22 +73,81 @@ namespace ProyectoTFG.Datos
             return user.VerifyPassword(user.Pass, password);
         }
 
-    }
-
-
-
-
-
-    /* var filter = Builders<BsonDocument>.Filter.Eq("Apodo", email);
+        public User GetUser(string email)
+        {
+            var filter = Builders<User>.Filter.Eq("Email", email) | Builders<User>.Filter.Eq("Apodo", email);
             var user = usersCollection.Find(filter).FirstOrDefault();
 
-            if (user == null)
-            {
-                return false; // Usuario no encontrado
-            }
+            return user;
+        }
 
-            // Verifica la contraseña
-            User userModel = BsonSerializer.Deserialize<User>(user);
 
-            return userModel.VerifyPassword(userModel.Pass, password);*/
+        //
+        //  Metodos de Ticket   -----------------
+        //
+        public void UserMeterTicket(string titulo, string descripcion, string categoria, string prioridad, DateTime fechaInicio, string emailUser, byte[] imagen)
+        {
+            Ticket ticket = new Ticket { Titulo = titulo, Descripcion = descripcion, Categoria = categoria, Prioridad = prioridad, FechaInicio = fechaInicio, FechaUltimaModificacion = fechaInicio, Estado = "Sin seguimiento", Usuario = emailUser, Imagen=imagen};
+            ticketsCollection.InsertOne(ticket);
+        }
+
+        public List<Ticket> GetTickets()
+        {
+            var filter = Builders<Ticket>.Filter.Empty;
+            return ticketsCollection.Find(filter).ToList();
+        }
+
+        public List<Ticket> GetTickets(string email, bool oculto)
+        {
+            var filter = Builders<Ticket>.Filter.Eq("Usuario", email) & Builders<Ticket>.Filter.Eq("Borrado", oculto);
+            return ticketsCollection.Find(filter).ToList();
+        }
+
+        public List<Ticket> GetTickets(string email, string estado)
+        {
+            var filter = Builders<Ticket>.Filter.Eq("Usuario", email) & Builders<Ticket>.Filter.Eq("Estado", estado);
+            return ticketsCollection.Find(filter).ToList();
+        }
+
+        public bool UpdateTicket(Ticket ticket)
+        {
+            var filter = Builders<Ticket>.Filter.Eq("_id", ticket.Id);
+            var update = Builders<Ticket>.Update
+                .Set("Titulo", ticket.Titulo)
+                .Set("Descripcion", ticket.Descripcion)
+                .Set("Categoria", ticket.Categoria)
+                .Set("Prioridad", ticket.Prioridad)
+                .Set("FechaInicio", ticket.FechaInicio)
+                .Set("Estado", ticket.Estado)
+                .Set("Usuario", ticket.Usuario);
+            var result = ticketsCollection.UpdateOne(filter, update);
+
+            return result.IsAcknowledged;
+        }
+
+        public bool OcultarTicket(Ticket ticket)
+        {
+            var filter = Builders<Ticket>.Filter.Eq("_id", ticket.Id);
+            var update = Builders<Ticket>.Update
+                .Set("Borrado", true);
+            var result = ticketsCollection.UpdateOne(filter, update);
+
+            return result.IsAcknowledged;
+        }
+
+        public bool DeleteTicket(Ticket ticket)
+        {
+            var filter = Builders<Ticket>.Filter.Eq("_id", ticket.Id);
+            var result = ticketsCollection.DeleteOne(filter);
+
+            return result.IsAcknowledged;
+        }
+
+
+
+
+
+
+    }
+
 }

@@ -20,10 +20,10 @@
     <FlyoutItem Title="Tickets" Icon="warning.png">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Tickets}" />
     </FlyoutItem>
-    <FlyoutItem Title="Técnico" Icon="tecnico.png">
+    <FlyoutItem x:Name="pagTecnico" Title="Técnico" Icon="tecnico.png">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Tecnico}" />
     </FlyoutItem>
-    <FlyoutItem Title="Administración" Icon="admin.png">
+    <FlyoutItem x:Name="pagAdmin" Title="Administración" Icon="admin.png">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Admin}" />
     </FlyoutItem>
     <FlyoutItem Title="Ajustes" Icon="settings.png">
