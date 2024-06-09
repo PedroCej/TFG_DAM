@@ -116,6 +116,9 @@
 	  <MauiXaml Update="Vistas\Inicio_Tecnico.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Vistas\Inicio_Tecnico_Ticket.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Vistas\Inicio_Tickets.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -10,24 +10,6 @@ public partial class Inicio_CrearTicket : ContentPage
     public Inicio_CrearTicket()
 	{
 		InitializeComponent();
-        List<string> categories = new List<string>
-    {
-        "Equipamiento de Tecnología",
-        "Mobiliario",
-        "Instalaciones",
-        "Seguridad",
-        "Limpieza",
-        "Espacios Exteriores",
-        "Recursos de Aprendizaje",
-        "Servicios de Alimentación",
-        "Salud y Seguridad",
-        "Conectividad a Internet"
-    };
-
-        foreach (var category in categories)
-        {
-            miPicker.Items.Add(category);
-        }
     }
 
     private void miSlider_ValueChanged(object sender, ValueChangedEventArgs e)
@@ -52,7 +34,7 @@ public partial class Inicio_CrearTicket : ContentPage
         string prioridad = "";
         if (miSlider.Value == 1)
         {
-            prioridad = "Baja";
+            prioridad = "ZBaja";
         }
         else if (miSlider.Value == 2)
         {

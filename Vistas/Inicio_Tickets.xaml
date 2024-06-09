@@ -24,130 +24,179 @@
 
         </VerticalStackLayout>
 
-        
-            <!--  Contenido  -->
-            <ScrollView Grid.Row="1" Grid.Column="1" Padding="0,0,10,0">
-                <VerticalStackLayout Spacing="10">
-                    <CollectionView
-                        x:Name="collection"
-                        ItemsSource="{Binding Tickets}"
-                        SelectionMode="Single">
 
-                        <CollectionView.Header>
+        <!--  Contenido  -->
+        <ScrollView
+            Grid.Row="1"
+            Grid.Column="1"
+            Padding="0,0,10,0">
+            <VerticalStackLayout Spacing="10">
+                <CollectionView
+                    x:Name="collection"
+                    ItemsSource="{Binding Tickets}"
+                    SelectionChanged="Collection_SelectionChanged"
+                    SelectionMode="Single">
+
+                    <CollectionView.Header>
+                        <Grid
+                            Padding="3"
+                            ColumnDefinitions="auto,auto,*,auto,auto,auto"
+                            ColumnSpacing="10"
+                            RowDefinitions="auto">
+                            <ImageButton
+                                x:Name="btnSeleccion"
+                                Grid.Column="0"
+                                BackgroundColor="Transparent"
+                                Clicked="btnSeleccion_Clicked"
+                                HeightRequest="10"
+                                HorizontalOptions="Center"
+                                Source="deseleccion.png"
+                                VerticalOptions="Center"
+                                WidthRequest="5" />
+                            <Label
+                                Grid.Column="1"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Start"
+                                Text="Título"
+                                VerticalOptions="Center" />
+                            <ImageButton
+                                x:Name="btnOrdenarTitulo"
+                                Grid.Column="1"
+                                Padding="0,0,0,40"
+                                Background="Transparent"
+                                Clicked="btnOrdenarTitulo_Clicked"
+                                MaximumHeightRequest="60"
+                                ZIndex="10" />
+                            <ImageButton
+                                x:Name="btnOrdenarPrioridad"
+                                Grid.Column="3"
+                                Padding="0,0,0,40"
+                                Background="Transparent"
+                                Clicked="btnOrdenarPrioridad_Clicked"
+                                MaximumHeightRequest="60"
+                                ZIndex="10" />
+                            <ImageButton
+                                x:Name="btnOrdenarCategoria"
+                                Grid.Column="4"
+                                Padding="0,0,0,40"
+                                Background="Transparent"
+                                Clicked="btnOrdenarCategoria_Clicked"
+                                MaximumHeightRequest="60"
+                                ZIndex="10" />
+                            <ImageButton
+                                x:Name="btnOrdenarEstado"
+                                Grid.Column="5"
+                                Padding="0,0,0,40"
+                                Background="Transparent"
+                                Clicked="btnOrdenarEstado_Clicked"
+                                MaximumHeightRequest="60"
+                                ZIndex="10" />
+
+
+                            <HorizontalStackLayout Grid.Column="2">
+                                <Label
+                                    FontAttributes="Bold"
+                                    HorizontalOptions="Start"
+                                    LineBreakMode="TailTruncation"
+                                    Text="-   Descripción"
+                                    VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+
+                            <Label
+                                Grid.Column="3"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                Text="Prioridad"
+                                VerticalOptions="Center"
+                                WidthRequest="100" />
+                            <Label
+                                Grid.Column="4"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                Text="Categoría"
+                                VerticalOptions="Center"
+                                WidthRequest="100" />
+                            <Label
+                                Grid.Column="5"
+                                FontAttributes="Bold"
+                                HorizontalTextAlignment="Center"
+                                Text="Estado"
+                                VerticalOptions="Center"
+                                WidthRequest="110" />
+                        </Grid>
+                    </CollectionView.Header>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:Name="dataTemplate">
                             <Grid
                                 Padding="3"
                                 ColumnDefinitions="auto,auto,*,auto,auto,auto"
                                 ColumnSpacing="10"
                                 RowDefinitions="auto">
-                                <ImageButton
-                                    x:Name="btnSeleccion"
+                                <CheckBox
                                     Grid.Column="0"
-                                    BackgroundColor="Transparent"
-                                    Clicked="btnSeleccion_Clicked"
-                                    HeightRequest="10"
-                                    HorizontalOptions="Center"
-                                    Source="deseleccion.png"
+                                    Margin="5,0,0,0"
+                                    BindingContextChanged="CheckBox_BindingContextChanged"
+                                    CheckedChanged="CheckBox_CheckedChanged"
+                                    IsChecked="{Binding IsChecked}"
                                     VerticalOptions="Center"
-                                    WidthRequest="5" />
-                                <Label
-                                    Grid.Column="1"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="Start"
-                                    Text="Título"
-                                    VerticalOptions="Center"
-                                    WidthRequest="100" />
-                                <Label
-                                    Grid.Column="2"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="Start"
-                                    LineBreakMode="TailTruncation"
-                                    Text="Descripción"
-                                    VerticalOptions="Center" />
-                                <Label
-                                    Grid.Column="3"
-                                    FontAttributes="Bold"
-                                    HorizontalTextAlignment="Center"
-                                    Text="Prioridad"
-                                    VerticalOptions="Center"
-                                    WidthRequest="100" />
-                                <Label
-                                    Grid.Column="4"
-                                    FontAttributes="Bold"
-                                    HorizontalTextAlignment="Center"
-                                    Text="Categoría"
-                                    VerticalOptions="Center"
-                                    WidthRequest="100" />
-                                <Label
-                                    Grid.Column="5"
-                                    FontAttributes="Bold"
-                                    HorizontalTextAlignment="Center"
-                                    Text="Estado"
-                                    VerticalOptions="Center"
-                                    WidthRequest="110" />
-                            </Grid>
-                        </CollectionView.Header>
-
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate x:Name="dataTemplate">
-                                <Grid
-                                    Padding="3"
-                                    ColumnDefinitions="auto,auto,*,auto,auto,auto"
-                                    ColumnSpacing="10"
-                                    RowDefinitions="auto">
-                                    <CheckBox
-                                        Grid.Column="0"
-                                        Margin="5,0,0,0"
-                                        BindingContextChanged="CheckBox_BindingContextChanged"
-                                        CheckedChanged="CheckBox_CheckedChanged"
-                                        IsChecked="{Binding IsChecked}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="40" />
+                                    WidthRequest="40" />
+                                <HorizontalStackLayout Grid.Column="1" Spacing="10">
                                     <Label
                                         Grid.Column="1"
                                         FontAttributes="Bold"
                                         LineBreakMode="TailTruncation"
                                         Text="{Binding Titulo}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="100" />
+                                        VerticalOptions="Center" />
                                     <Label
-                                        Grid.Column="2"
                                         LineBreakMode="TailTruncation"
                                         MaxLines="1"
-                                        Text="{Binding Descripcion}"
+                                        Text="-"
                                         VerticalOptions="Center" />
-                                    <Image
-                                        
-                                        Grid.Column="3" 
-                                        WidthRequest="85"
-                                        VerticalOptions="Center"
-                                        Loaded="Image_Loaded"
-                                        HeightRequest="44"
-                                        />
-                                    <Label
-                                        Grid.Column="4"
-                                        HorizontalTextAlignment="Center"
-                                        Text="{Binding Categoria}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="100" />
-                                    <Label
-                                        Grid.Column="5"
-                                        HorizontalTextAlignment="Center"
-                                        LineBreakMode="TailTruncation"
-                                        Text="{Binding Estado}"
-                                        VerticalOptions="Center"
-                                        WidthRequest="110" />
-                                </Grid>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-                    
-                </VerticalStackLayout>
-            </ScrollView>
-  
+                                </HorizontalStackLayout>
+                                <Label
+                                    Grid.Column="2"
+                                    LineBreakMode="TailTruncation"
+                                    MaxLines="1"
+                                    Text="{Binding Descripcion}"
+                                    VerticalOptions="Center" />
+
+                                <Image
+                                    Grid.Column="3"
+                                    BindingContextChanged="Image_BindingContextChanged"
+                                    HeightRequest="44"
+                                    Loaded="Image_Loaded"
+                                    VerticalOptions="Center"
+                                    WidthRequest="85" />
+                                <Label
+                                    Grid.Column="4"
+                                    HorizontalTextAlignment="Center"
+                                    Text="{Binding Categoria}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="100" />
+                                <Label
+                                    Grid.Column="5"
+                                    HorizontalTextAlignment="Center"
+                                    LineBreakMode="TailTruncation"
+                                    Text="{Binding Estado}"
+                                    VerticalOptions="Center"
+                                    WidthRequest="110" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
 
         <VerticalStackLayout Grid.Row="2" Grid.Column="1">
             <!--  Footer  -->
-           <Button x:Name="btnBorrar" Clicked="btnBorrar_Clicked" Text="Borrar" IsVisible="False" />
+            <Button
+                x:Name="btnBorrar"
+                Clicked="btnBorrar_Clicked"
+                IsVisible="False"
+                Text="Borrar" />
 
         </VerticalStackLayout>
 

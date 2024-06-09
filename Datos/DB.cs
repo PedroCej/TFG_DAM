@@ -2,6 +2,7 @@
 using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using ProyectoTFG.Modelos;
+using System.Text;
 
 namespace ProyectoTFG.Datos
 {

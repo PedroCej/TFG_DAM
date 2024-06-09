@@ -1,24 +1,23 @@
 using ProyectoTFG.Datos;
 using ProyectoTFG.Modelos;
-using System.Runtime.CompilerServices;
 
 namespace ProyectoTFG.Vistas;
 
-public partial class Inicio_Tickets_Detalle : ContentPage
+public partial class Inicio_Tecnico_Ticket : ContentPage
 {
     private Ticket ticket;
-    private Inicio_Tickets pagTickets;
+    private Inicio_Tecnico pagTickets;
     DB db = new DB();
-    public Inicio_Tickets_Detalle(Ticket ticket, Inicio_Tickets pagTickets)
-	{
-        
-		InitializeComponent();
+    public Inicio_Tecnico_Ticket(Ticket ticket, Inicio_Tecnico pagTickets)
+    {
+
+        InitializeComponent();
 
         this.ticket = ticket;
         this.pagTickets = pagTickets;
         Titulo.Text = ticket.Titulo;
         Descripcion.Text = ticket.Descripcion;
-        if(ticket.Prioridad == "ZBaja")
+        if (ticket.Prioridad == "ZBaja")
         {
             Prioridad.Value = 1;
         }
@@ -31,11 +30,11 @@ public partial class Inicio_Tickets_Detalle : ContentPage
             Prioridad.Value = 3;
         }
 
-        if(ticket.Imagen!=null)
+        if (ticket.Imagen != null)
         {
             btnImagen.Source = ImageSource.FromStream(() => new MemoryStream(ticket.Imagen));
         }
-        
+
         Categoria.SelectedItem = ticket.Categoria;
         Estado.SelectedItem = ticket.Estado;
 
@@ -53,20 +52,23 @@ public partial class Inicio_Tickets_Detalle : ContentPage
             Titulo.IsEnabled = true;
             Descripcion.IsEnabled = true;
             Prioridad.IsEnabled = true;
+            Estado.IsEnabled = true;
             btnImagen.IsEnabled = true;
             btnAplicar.IsEnabled = true;
             Categoria.IsEnabled = true;
         }
-        else { 
+        else
+        {
             btnHabilitar.Text = "Habilitar edición";
             Titulo.IsEnabled = false;
             Descripcion.IsEnabled = false;
             Prioridad.IsEnabled = false;
+            Estado.IsEnabled = false;
             btnImagen.IsEnabled = false;
             btnAplicar.IsEnabled = false;
             Categoria.IsEnabled = false;
         }
-        
+
 
     }
     private void Prioridad_ValueChanged(object sender, ValueChangedEventArgs e)
@@ -77,7 +79,7 @@ public partial class Inicio_Tickets_Detalle : ContentPage
 
     private void btnImagen_Clicked(object sender, EventArgs e)
     {
-        
+
     }
 
 
@@ -86,7 +88,7 @@ public partial class Inicio_Tickets_Detalle : ContentPage
 
     }
 
-    
+
 
     private void btnAplicar_Clicked(object sender, EventArgs e)
     {
@@ -107,7 +109,7 @@ public partial class Inicio_Tickets_Detalle : ContentPage
         ticket.Categoria = Categoria.SelectedItem.ToString();
         ticket.Estado = Estado.SelectedItem.ToString();
         ticket.FechaUltimaModificacion = DateTime.Now;
-        
+
 
         db.UpdateTicket(ticket);
         pagTickets.UpdateTickets();
@@ -128,6 +130,6 @@ public partial class Inicio_Tickets_Detalle : ContentPage
         {
             Navigation.PopModalAsync();
         }
-        
+
     }
 }

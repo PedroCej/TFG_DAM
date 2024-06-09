@@ -1,7 +1,6 @@
 using ProyectoTFG.Datos;
 using ProyectoTFG.Modelos;
 using System.Collections.ObjectModel;
-using System.Globalization;
 
 
 namespace ProyectoTFG.Vistas;
@@ -14,36 +13,51 @@ public partial class Inicio_Tickets : ContentPage
     private bool seleccion;
     private bool isUpdating;
     private bool botonBorrar;
+    private bool ascendente=true;
 
     public Inicio_Tickets()
     {
         InitializeComponent();
 
         Tickets = new ObservableCollection<Ticket>(db.GetTickets(_AppShell_Inicio.userShell.Email, false));
+        Tickets = new ObservableCollection<Ticket>(Tickets.Reverse());
 
         this.BindingContext = this;
-        collection.SelectionChanged += Collection_SelectionChanged;
-        Task.Run(async () =>
+
+        Thread hilo = new Thread(async () =>
         {
             while (true)
             {
                 if (!isUpdating)
                 {
                     isUpdating = true;
-                    await UpdateTickets();
+                    await UpdateTicketsHilo();
                     isUpdating = false;
                 }
                 await Task.Delay(10000);
             }
         });
+        hilo.Start();
 
-        
     }
-    private async Task UpdateTickets()
+    public async Task UpdateTickets()
+    {
+        ObservableCollection<Ticket> updatedTickets = new ObservableCollection<Ticket>(db.GetTickets(_AppShell_Inicio.userShell.Email, false));
+        Device.BeginInvokeOnMainThread(() =>
+        {
+            Tickets.Clear();
+            foreach (var ticket in updatedTickets)
+            {
+                Tickets.Add(ticket);
+            }
+        });
+    }
+
+    public async Task UpdateTicketsHilo()
     {
         ObservableCollection<Ticket> updatedTickets = new ObservableCollection<Ticket>(db.GetTickets(_AppShell_Inicio.userShell.Email, false));
 
-        if(updatedTickets.Count == Tickets.Count)
+        if (updatedTickets.Count == Tickets.Count)
         {
             return;
         }
@@ -65,8 +79,8 @@ public partial class Inicio_Tickets : ContentPage
             return;
         }
 
-        Navigation.PushModalAsync(new Inicio_Tickets_Detalle(ticket));
-        collection.SelectedItem = null;
+        Navigation.PushModalAsync(new Inicio_Tickets_Detalle(ticket, this));
+        
     }
 
 
@@ -147,5 +161,134 @@ public partial class Inicio_Tickets : ContentPage
             }
             UpdateTickets();
         }
+    }
+
+    private void btnOrdenarTitulo_Clicked(object sender, EventArgs e)
+    {
+        btnOrdenarPrioridad.Source = null;
+        btnOrdenarEstado.Source = null;
+        btnOrdenarCategoria.Source = null;
+        if (ascendente)
+        {
+            btnOrdenarTitulo.Source = "ascendente.png";
+            var sortedTickets = new ObservableCollection<Ticket>(Tickets.OrderBy(ticket => ticket.Titulo));
+            Tickets.Clear();
+            foreach (var ticket in sortedTickets)
+            {
+                Tickets.Add(ticket);
+            }
+            ascendente = false;
+        }
+        else
+        {
+            btnOrdenarTitulo.Source = "descendente.png";
+            var sortedTickets = new ObservableCollection<Ticket>(Tickets.OrderByDescending(ticket => ticket.Titulo));
+            Tickets.Clear();
+            foreach (var ticket in sortedTickets)
+            {
+                Tickets.Add(ticket);
+            }
+            ascendente = true;
+        }
+    }
+
+    private void btnOrdenarPrioridad_Clicked(object sender, EventArgs e)
+    {
+        btnOrdenarTitulo.Source = null;
+        btnOrdenarEstado.Source = null;
+        btnOrdenarCategoria.Source = null;
+        if (ascendente)
+        {
+            btnOrdenarPrioridad.Source = "ascendente.png";
+            var sortedTickets = new ObservableCollection<Ticket>(Tickets.OrderBy(ticket => ticket.Prioridad));
+            Tickets.Clear();
+            foreach (var ticket in sortedTickets)
+            {
+                Tickets.Add(ticket);
+            }
+
+            ascendente = false;
+        }
+        else
+        {
+            btnOrdenarPrioridad.Source = "descendente.png";
+            var sortedTickets = new ObservableCollection<Ticket>(Tickets.OrderByDescending(ticket => ticket.Prioridad));
+            Tickets.Clear();
+            foreach (var ticket in sortedTickets)
+            {
+                Tickets.Add(ticket);
+            }
+            ascendente = true;
+        }
+        BindingContext = null;
+        BindingContext = this;
+
+    }
+
+    private void btnOrdenarCategoria_Clicked(object sender, EventArgs e)
+    {
+        btnOrdenarEstado.Source = null;
+        btnOrdenarPrioridad.Source = null;
+        btnOrdenarTitulo.Source = null;
+        if (ascendente)
+        {
+            btnOrdenarCategoria.Source = "ascendente.png";
+            var sortedTickets = new ObservableCollection<Ticket>(Tickets.OrderBy(ticket => ticket.Categoria));
+            Tickets.Clear();
+            foreach (var ticket in sortedTickets)
+            {
+                Tickets.Add(ticket);
+            }
+            ascendente = false;
+        }
+        else
+        {
+            btnOrdenarCategoria.Source = "descendente.png";
+            var sortedTickets = new ObservableCollection<Ticket>(Tickets.OrderByDescending(ticket => ticket.Categoria));
+            Tickets.Clear();
+            foreach (var ticket in sortedTickets)
+            {
+                Tickets.Add(ticket);
+            }
+            ascendente = true;
+        }
+        BindingContext = null;
+        BindingContext = this;
+    }
+
+    private void btnOrdenarEstado_Clicked(object sender, EventArgs e)
+    {
+        btnOrdenarCategoria.Source = null;
+        btnOrdenarPrioridad.Source = null;
+        btnOrdenarTitulo.Source = null;
+        if (ascendente)
+        {
+            btnOrdenarEstado.Source = "ascendente.png";
+            var sortedTickets = new ObservableCollection<Ticket>(Tickets.OrderBy(ticket => ticket.Estado));
+            Tickets.Clear();
+            foreach (var ticket in sortedTickets)
+            {
+                Tickets.Add(ticket);
+            }
+            ascendente = false;
+        }
+        else
+        {
+            btnOrdenarEstado.Source = "descendente.png";
+            var sortedTickets = new ObservableCollection<Ticket>(Tickets.OrderByDescending(ticket => ticket.Estado));
+            Tickets.Clear();
+            foreach (var ticket in sortedTickets)
+            {
+                Tickets.Add(ticket);
+            }
+            ascendente = true;
+        }
+        BindingContext = null;
+        BindingContext = this;
+    }
+
+    private void Image_BindingContextChanged(object sender, EventArgs e)
+    {
+        Image_Loaded(sender, e);
     }
 }

@@ -29,8 +29,6 @@ namespace ProyectoTFG.Modelos
         public DateTime FechaUltimaModificacion { get; set; }
         [BsonElement("Estado")]
         public string Estado { get; set; }
-        [BsonElement("Comentarios")]
-        public List<string> Comentarios { get; set; }
         [BsonElement("Usuario")]
         public string Usuario { get; set; }
         [BsonElement("Asignado")]
@@ -44,7 +42,7 @@ namespace ProyectoTFG.Modelos
         {
         }
 
-        public Ticket(string titulo, string descripcion, string prioridad, DateTime fechaInicio, DateTime fechaFin, string estado, List<string> comentarios, string usuario, string asignado)
+        public Ticket(string titulo, string descripcion, string prioridad, DateTime fechaInicio, DateTime fechaFin, string estado, string usuario, string asignado)
         {
             Titulo = titulo;
             Descripcion = descripcion;
@@ -52,10 +50,10 @@ namespace ProyectoTFG.Modelos
             FechaInicio = fechaInicio;
             FechaUltimaModificacion = fechaFin;
             Estado = estado;
-            Comentarios = comentarios;
             Usuario = usuario;
             AsignadoA = asignado;
             Borrado = false;
+            Imagen = Encoding.UTF8.GetBytes("images.png");
         }
 
         public Ticket(string titulo, string descripcion, string categoria, string prioridad, DateTime fechaInicio, string usuario, byte[] imagen)
@@ -66,7 +64,6 @@ namespace ProyectoTFG.Modelos
             Prioridad = prioridad;
             FechaInicio = fechaInicio;
             Estado = null;
-            Comentarios = null;
             Usuario = usuario;
             AsignadoA = null;
             Borrado = false;
