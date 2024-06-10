@@ -21,7 +21,8 @@
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Tickets}" />
     </FlyoutItem>
     <FlyoutItem x:Name="pagTecnico" Title="Técnico" Icon="tecnico.png">
-        <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Tecnico}" />
+        <ShellContent Title="Todos los tickets" ContentTemplate="{DataTemplate misPaginas:Inicio_Tecnico}" />
+        <ShellContent Title="Asignados" ContentTemplate="{DataTemplate misPaginas:Inicio_Tecnico2}" />
     </FlyoutItem>
     <FlyoutItem x:Name="pagAdmin" Title="Administración" Icon="admin.png">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Admin}" />

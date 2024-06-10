@@ -4,10 +4,286 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Title="Inicio_Admin">
-    <VerticalStackLayout>
-        <Label
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.05*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.05*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+            <!--  Cabecera  -->
+
+        </VerticalStackLayout>
+
+        <Grid ColumnDefinitions="*,*,*"
+            Grid.Row="1"
+            Grid.Column="1"
+              ColumnSpacing="20"
+            VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+            <!--  Contenido  -->
+            <Frame
+                Grid.Column="0"
+                Padding="10"
+                BackgroundColor="Grey"
+                CornerRadius="10"
+                HorizontalOptions="FillAndExpand"
+                VerticalOptions="Start">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Large"
+                        HorizontalOptions="Center"
+                        Text="Usuarios" />
+                    <ListView
+                        x:Name="listViewUsuarios"
+                        HorizontalOptions="Center"
+                        ItemSelected="listViewUsuarios_ItemSelected"
+                        ItemsSource="{Binding Usuarios}"
+                        MaximumHeightRequest="400">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                                        <Label FontAttributes="Bold" Text="{Binding Email}" />
+                                        <HorizontalStackLayout>
+                                            <Label Text="(" />
+                                            <Label Text="{Binding Apodo}" />
+                                            <Label Text=")" />
+                                        </HorizontalStackLayout>
+                                    </HorizontalStackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ImageButton
+                        Margin="0,20,0,0"
+                        BackgroundColor="Transparent"
+                        Clicked="ImageButton_Clicked"
+                        HorizontalOptions="Center"
+                        Source="mas.png"
+                        WidthRequest="30" />
+                    <Entry
+                        x:Name="txtNombre"
+                        Completed="EntryCompleted"
+                        IsVisible="False"
+                        Placeholder="Nombre *" />
+                    <Entry
+                        x:Name="txtApellidos"
+                        Completed="EntryCompleted"
+                        IsVisible="False"
+                        Placeholder="Apellidos" />
+                    <Entry
+                        x:Name="txtEmail"
+                        Completed="EntryCompleted"
+                        IsVisible="False"
+                        Placeholder="Email *"
+                        TextChanged="txtEmail_TextChanged" />
+                    <Label
+                        x:Name="lblErrorEmail"
+                        IsVisible="False"
+                        Text="Correo electrónico ya está en uso"
+                        />
+                    <Entry
+                        x:Name="txtApodo"
+                        Completed="EntryCompleted"
+                        IsVisible="False"
+                        Placeholder="Nombre de Usuario"
+                        TextChanged="txtApodo_TextChanged" />
+                    <Label
+                        x:Name="lblErrorApodo"
+                        IsVisible="False"
+                        Text="Nombre de usuario ya está en uso"
+                        TextColor="Red" />
+                    <Entry
+                        x:Name="txtPass"
+                        Completed="EntryCompleted"
+                        IsPassword="True"
+                        IsVisible="False"
+                        Placeholder="Contraseña *" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame
+                Grid.Column="1"
+    Padding="10"
+    BackgroundColor="Grey"
+    CornerRadius="10"
+    HorizontalOptions="FillAndExpand"
+                VerticalOptions="Start">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+            FontAttributes="Bold"
+            FontSize="Large"
             HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+            Text="Técnicos" />
+                    <ListView
+            x:Name="listViewTecnicos"
+            HorizontalOptions="Center"
+            ItemSelected="listViewTecnicos_ItemSelected"
+            ItemsSource="{Binding Tecnicos}"
+            MaximumHeightRequest="400">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                                        <Label FontAttributes="Bold" Text="{Binding Email}" />
+                                        <HorizontalStackLayout>
+                                            <Label Text="(" />
+                                            <Label Text="{Binding Apodo}" />
+                                            <Label Text=")" />
+                                        </HorizontalStackLayout>
+                                    </HorizontalStackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ImageButton
+            Margin="0,20,0,0"
+            BackgroundColor="Transparent"
+            Clicked="ImageButton_Clicked_1"
+            HorizontalOptions="Center"
+            Source="mas.png"
+            WidthRequest="30" />
+                    <Entry
+            x:Name="txtNombret"
+            Completed="EntryCompletedt"
+            IsVisible="False"
+            Placeholder="Nombre *" />
+                    <Entry
+            x:Name="txtApellidost"
+            Completed="EntryCompletedt"
+            IsVisible="False"
+            Placeholder="Apellidos" />
+                    <Entry
+            x:Name="txtEmailt"
+            Completed="EntryCompletedt"
+            IsVisible="False"
+            Placeholder="Email *"
+            TextChanged="txtEmailt_TextChanged" />
+                    <Label
+            x:Name="lblErrorEmailt"
+            IsVisible="False"
+            Text="Correo electrónico ya está en uso"
+            />
+                    <Entry
+            x:Name="txtApodot"
+            Completed="EntryCompletedt"
+            IsVisible="False"
+            Placeholder="Nombre de Usuario"
+            TextChanged="txtApodot_TextChanged"
+                        />
+                    <Label
+            x:Name="lblErrorApodot"
+            IsVisible="False"
+            Text="Nombre de usuario ya está en uso"
+            TextColor="Red" />
+                    <Entry
+            x:Name="txtPasst"
+            Completed="EntryCompletedt"
+            IsPassword="True"
+            IsVisible="False"
+            Placeholder="Contraseña *" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Frame
+                Grid.Column="2"
+     Padding="10"
+     BackgroundColor="Grey"
+     CornerRadius="10"
+     HorizontalOptions="FillAndExpand"
+                VerticalOptions="Start">
+                <VerticalStackLayout Spacing="10">
+                    <Label
+             FontAttributes="Bold"
+             FontSize="Large"
+             HorizontalOptions="Center"
+             Text="Administradores" />
+                    <ListView
+             x:Name="listViewAdmins"
+             HorizontalOptions="Center"
+             ItemSelected="listViewAdmins_ItemSelected"
+             ItemsSource="{Binding Admins}"
+             MaximumHeightRequest="400">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                                        <Label FontAttributes="Bold" Text="{Binding Email}" />
+                                        <HorizontalStackLayout>
+                                            <Label Text="(" />
+                                            <Label Text="{Binding Apodo}" />
+                                            <Label Text=")" />
+                                        </HorizontalStackLayout>
+                                    </HorizontalStackLayout>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                    <ImageButton
+             Margin="0,20,0,0"
+             BackgroundColor="Transparent"
+             Clicked="ImageButton_Clicked_2"
+             HorizontalOptions="Center"
+             Source="mas.png"
+             WidthRequest="30" />
+                    <Entry
+             x:Name="txtNombrea"
+             Completed="EntryCompleteda"
+             IsVisible="False"
+             Placeholder="Nombre *" />
+                    <Entry
+             x:Name="txtApellidosa"
+             Completed="EntryCompleteda"
+             IsVisible="False"
+             Placeholder="Apellidos" />
+                    <Entry
+             x:Name="txtEmaila"
+             Completed="EntryCompleteda"
+             IsVisible="False"
+             Placeholder="Email *"
+             TextChanged="txtEmaila_TextChanged" />
+                    <Label
+             x:Name="lblErrorEmaila"
+             IsVisible="False"
+             Text="Correo electrónico ya está en uso"
+             />
+                    <Entry
+             x:Name="txtApodoa"
+             Completed="EntryCompleteda"
+             IsVisible="False"
+             Placeholder="Nombre de Usuario"
+             TextChanged="txtApodoa_TextChanged" />
+                    <Label
+             x:Name="lblErrorApodoa"
+             IsVisible="False"
+             Text="Nombre de usuario ya está en uso"
+             TextColor="Red" />
+                    <Entry
+             x:Name="txtPassa"
+             Completed="EntryCompleteda"
+             IsPassword="True"
+             IsVisible="False"
+             Placeholder="Contraseña *" />
+                </VerticalStackLayout>
+            </Frame>
+
+        </Grid>
+
+        <VerticalStackLayout
+            Grid.Row="2"
+            Grid.Column="1"
+            Background="Transparent"
+            Spacing="10">
+            <!--  Footer  -->
+        </VerticalStackLayout>
+
+    </Grid>
 </ContentPage>

@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoTFG.Vistas.Inicio_User_Detalles"
+             Title="Inicio_User_Detalles"
+             BackgroundColor="Transparent">
+    <Grid
+        BackgroundColor="#01999999"
+        ColumnDefinitions="0.1*,*,0.1*"
+        RowDefinitions="0.1*,auto,0.1*">
+
+        <Frame
+            Grid.Row="1"
+            Grid.Column="1"
+            Margin="200,0,0,0"
+            Padding="20"
+            BackgroundColor="#666666"
+            HorizontalOptions="Center"
+            ZIndex="10">
+            <VerticalStackLayout Spacing="15" HorizontalOptions="Center">
+                <HorizontalStackLayout Spacing="5">
+                    <Label Text="Nombre:"/>
+                    <Label Text="{Binding Nombre}"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="5">
+                    <Label Text="Apellidos:"/>
+                    <Label Text="{Binding Apellidos}"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="5">
+                    <Label Text="Email:"/>
+                    <Label Text="{Binding Email}"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="5">
+                    <Label Text="Apodo:"/>
+                    <Label Text="{Binding Apodo}"/>
+                </HorizontalStackLayout>
+                <HorizontalStackLayout Spacing="5">
+                    <Label Text="Rol:"/>
+                    <Label Text="{Binding Rol}"/>
+                </HorizontalStackLayout>
+                <Picker x:Name="entryRol" SelectedIndexChanged="entryRol_SelectedIndexChanged">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Usuario</x:String>
+                            <x:String>Técnico</x:String>
+                            <x:String>Administrador</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+            </VerticalStackLayout>
+        </Frame>
+
+        <Button
+            Grid.Row="0"
+            Grid.RowSpan="3"
+            Grid.Column="0"
+            Grid.ColumnSpan="3"
+            BackgroundColor="Transparent"
+            Clicked="btnVoler_Clicked" />
+
+    </Grid>
+</ContentPage>

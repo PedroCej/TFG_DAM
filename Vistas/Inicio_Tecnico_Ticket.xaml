@@ -120,7 +120,8 @@
                         Grid.RowSpan="2"
                         Grid.Column="2"
                         IsEnabled="False"
-                        VerticalOptions="Center">
+                        VerticalOptions="Center"
+                        SelectedIndexChanged="Estado_SelectedIndexChanged">
                         <Picker.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
                                 <x:String>Sin seguimiento</x:String>

@@ -1,0 +1,268 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoTFG.Vistas.Inicio_Tecnico2"
+             Title="Inicio_Tecnico2">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.05*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.05*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+            <!--  Cabecera  -->
+
+        </VerticalStackLayout>
+
+
+        <!--  Contenido  -->
+        <ScrollView
+         Grid.Row="1"
+         Grid.Column="1"
+         Padding="0,0,10,0">
+            <VerticalStackLayout Spacing="10">
+                <CollectionView
+                 x:Name="collection1"
+                 ItemsSource="{Binding Tickets}"
+                 SelectionMode="Single">
+
+                    <CollectionView.Header>
+                        <Grid
+                         Padding="3"
+                         ColumnDefinitions="auto,auto,*,auto,auto,auto"
+                         ColumnSpacing="10"
+                         RowDefinitions="auto">
+                            <ImageButton
+                             x:Name="btnSeleccion"
+                             Grid.Column="0"
+                             BackgroundColor="Transparent"
+                             Clicked="btnSeleccion_Clicked"
+                             HeightRequest="10"
+                             HorizontalOptions="Center"
+                             Source="deseleccion.png"
+                             VerticalOptions="Center"
+                             WidthRequest="5" />
+                            <Label
+                             Grid.Column="1"
+                             FontAttributes="Bold"
+                             HorizontalOptions="Start"
+                             Text="Título"
+                             VerticalOptions="Center" />
+                            <ImageButton
+                             x:Name="btnOrdenarTitulo"
+                             Grid.Column="1"
+                             Padding="0,0,0,40"
+                             Background="Transparent"
+                             Clicked="btnOrdenarTitulo_Clicked"
+                             MaximumHeightRequest="60"
+                             ZIndex="10" />
+                            <ImageButton
+                             x:Name="btnOrdenarPrioridad"
+                             Grid.Column="3"
+                             Padding="0,0,0,40"
+                             Background="Transparent"
+                             Clicked="btnOrdenarPrioridad_Clicked"
+                             MaximumHeightRequest="60"
+                             ZIndex="10" />
+                            <ImageButton
+                             x:Name="btnOrdenarCategoria"
+                             Grid.Column="4"
+                             Padding="0,0,0,40"
+                             Background="Transparent"
+                             Clicked="btnOrdenarCategoria_Clicked"
+                             MaximumHeightRequest="60"
+                             ZIndex="10" />
+                            <ImageButton
+                             x:Name="btnOrdenarEstado"
+                             Grid.Column="5"
+                             Padding="0,0,0,40"
+                             Background="Transparent"
+                             Clicked="btnOrdenarEstado_Clicked"
+                             MaximumHeightRequest="60"
+                             ZIndex="10" />
+
+
+                            <HorizontalStackLayout Grid.Column="2">
+                                <Label
+                                 FontAttributes="Bold"
+                                 HorizontalOptions="Start"
+                                 LineBreakMode="TailTruncation"
+                                 Text="-    Descripción"
+                                 VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+
+                            <Label
+                             Grid.Column="3"
+                             FontAttributes="Bold"
+                             HorizontalTextAlignment="Center"
+                             Text="Prioridad"
+                             VerticalOptions="Center"
+                             WidthRequest="100" />
+                            <Label
+                             Grid.Column="4"
+                             FontAttributes="Bold"
+                             HorizontalTextAlignment="Center"
+                             Text="Categoría"
+                             VerticalOptions="Center"
+                             WidthRequest="100" />
+                            <Label
+                             Grid.Column="5"
+                             FontAttributes="Bold"
+                             HorizontalTextAlignment="Center"
+                             Text="Estado"
+                             VerticalOptions="Center"
+                             WidthRequest="110" />
+                        </Grid>
+                    </CollectionView.Header>
+
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:Name="dataTemplate">
+                            <Grid
+                             Padding="3"
+                             ColumnDefinitions="auto,auto,*,auto,auto,auto"
+                             ColumnSpacing="10"
+                             RowDefinitions="auto">
+                                <CheckBox
+                                 Grid.Column="0"
+                                 Margin="5,0,0,0"
+                                 BindingContextChanged="CheckBox_BindingContextChanged"
+                                 CheckedChanged="CheckBox_CheckedChanged"
+                                 IsChecked="{Binding IsChecked}"
+                                 VerticalOptions="Center"
+                                 WidthRequest="40" />
+
+                                <HorizontalStackLayout Grid.Column="1" Spacing="10">
+                                    <Label
+                                     FontAttributes="Bold"
+                                     LineBreakMode="TailTruncation"
+                                     Text="{Binding Titulo}"
+                                     VerticalOptions="Center" />
+                                    <Label
+                                     LineBreakMode="TailTruncation"
+                                     MaxLines="1"
+                                     Text="-"
+                                     VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <Label Grid.Column="2"
+                                 LineBreakMode="TailTruncation"
+                                 MaxLines="1"
+                                 Text="{Binding Descripcion}"
+                                 VerticalOptions="Center" />
+
+                                <Image
+                                 Grid.Column="3"
+                                 BindingContextChanged="Image_BindingContextChanged"
+                                 HeightRequest="44"
+                                 Loaded="Image_Loaded"
+                                 VerticalOptions="Center"
+                                 WidthRequest="85" />
+                                <Label
+                                 Grid.Column="4"
+                                 HorizontalTextAlignment="Center"
+                                 Text="{Binding Categoria}"
+                                 VerticalOptions="Center"
+                                 WidthRequest="100" />
+                                <Label
+                                 Grid.Column="5"
+                                 HorizontalTextAlignment="Center"
+                                 LineBreakMode="TailTruncation"
+                                 Text="{Binding Estado}"
+                                 VerticalOptions="Center"
+                                 WidthRequest="110" />
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </VerticalStackLayout>
+        </ScrollView>
+
+
+        <VerticalStackLayout
+         Grid.Row="2"
+         Grid.Column="1"
+         Background="Transparent"
+         Spacing="10">
+            <!--  Footer  -->
+            <StackLayout
+             HorizontalOptions="FillAndExpand"
+             Orientation="Horizontal"
+             Spacing="10">
+                <Button
+                 x:Name="BorrarDefinitivo"
+                 Clicked="BorrarDefinitivo_Clicked"
+                 HorizontalOptions="FillAndExpand"
+                 IsVisible="False"
+                 LineBreakMode="TailTruncation"
+                 Text="Borrar definitivamente" />
+                <Button
+                 x:Name="BorrarTerminados"
+                 Clicked="BorrarTerminados_Clicked"
+                 HorizontalOptions="FillAndExpand"
+                 IsVisible="False"
+                 LineBreakMode="TailTruncation"
+                 Text="Borrar definitivamente" />
+
+            </StackLayout>
+
+            <Grid ColumnDefinitions="*,*" ColumnSpacing="10">
+                <Picker
+                 x:Name="CambiarPrioridad"
+                 Grid.Column="0"
+                 IsVisible="False"
+                 SelectedIndexChanged="CambiarPrioridad_SelectedIndexChanged"
+                 TextColor="Transparent"
+                 ZIndex="10">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Alta</x:String>
+                            <x:String>Media</x:String>
+                            <x:String>Baja</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Button
+                 x:Name="btnMarcarTerminado"
+                 Grid.Column="0"
+                 HorizontalOptions="FillAndExpand"
+                 IsVisible="False"
+                 LineBreakMode="TailTruncation"
+                 Text="Modificar prioridad" />
+                <Picker
+                 x:Name="CambiarEstado"
+                 Grid.Column="1"
+                 IsVisible="False"
+                 SelectedIndexChanged="CambiarEstado_SelectedIndexChanged"
+                 TextColor="Transparent"
+                 ZIndex="10">
+                    <Picker.ItemsSource>
+                        <x:Array Type="{x:Type x:String}">
+                            <x:String>Sin seguimiento</x:String>
+                            <x:String>En proceso</x:String>
+                            <x:String>Terminado</x:String>
+                        </x:Array>
+                    </Picker.ItemsSource>
+                </Picker>
+                <Button
+                 x:Name="btnMarcarSeguimiento"
+                 Grid.Column="1"
+                 HorizontalOptions="FillAndExpand"
+                 IsVisible="False"
+                 LineBreakMode="TailTruncation"
+                 Text="Modificar estado" />
+            </Grid>
+
+
+
+        </VerticalStackLayout>
+
+    </Grid>
+
+</ContentPage>

@@ -7,6 +7,8 @@ public partial class Inicio_Tecnico_Ticket : ContentPage
 {
     private Ticket ticket;
     private Inicio_Tecnico pagTickets;
+    private Inicio_Tecnico2 pagTickets2;
+
     DB db = new DB();
     public Inicio_Tecnico_Ticket(Ticket ticket, Inicio_Tecnico pagTickets)
     {
@@ -44,6 +46,44 @@ public partial class Inicio_Tecnico_Ticket : ContentPage
         Tecnico.Text = ticket.AsignadoA;
 
     }
+
+    public Inicio_Tecnico_Ticket(Ticket ticket, Inicio_Tecnico2 pagTickets2, bool f)
+    {
+
+        InitializeComponent();
+
+        this.ticket = ticket;
+        this.pagTickets2 = pagTickets2;
+        Titulo.Text = ticket.Titulo;
+        Descripcion.Text = ticket.Descripcion;
+        if (ticket.Prioridad == "ZBaja")
+        {
+            Prioridad.Value = 1;
+        }
+        else if (ticket.Prioridad == "Media")
+        {
+            Prioridad.Value = 2;
+        }
+        else
+        {
+            Prioridad.Value = 3;
+        }
+
+        if (ticket.Imagen != null)
+        {
+            btnImagen.Source = ImageSource.FromStream(() => new MemoryStream(ticket.Imagen));
+        }
+
+        Categoria.SelectedItem = ticket.Categoria;
+        Estado.SelectedItem = ticket.Estado;
+
+        FechaCreacion.Text = ticket.FechaInicio.ToShortDateString();
+        FechaModificacion.Text = ticket.FechaUltimaModificacion.ToShortDateString();
+        Usuario.Text = ticket.Usuario;
+        Tecnico.Text = ticket.AsignadoA;
+
+    }
+
     private void btnHabilitar_Clicked(object sender, EventArgs e)
     {
         if (!btnAplicar.IsEnabled)
@@ -112,7 +152,14 @@ public partial class Inicio_Tecnico_Ticket : ContentPage
 
 
         db.UpdateTicket(ticket);
-        pagTickets.UpdateTickets();
+        if (pagTickets2 != null)
+        {
+            pagTickets2.UpdateTickets();
+        }
+        if (pagTickets != null)
+        {
+            pagTickets.UpdateTickets();
+        }
         btnAplicar.IsEnabled = false;
     }
 
@@ -131,5 +178,14 @@ public partial class Inicio_Tecnico_Ticket : ContentPage
             Navigation.PopModalAsync();
         }
 
+    }
+
+    private async void Estado_SelectedIndexChanged(object sender, EventArgs e)
+    {
+        if (Estado.SelectedItem.ToString() == "En proceso" && Estado.IsEnabled)
+        {
+            await DisplayAlert("Se le asignará la incidencia", "Se ha cambiado el estado de la incidencia a 'En proceso'. \nRecuerda aplicar los cambios.", "Aceptar");
+            ticket.AsignadoA = _AppShell_Inicio.userShell.Email;
+        }
     }
 }

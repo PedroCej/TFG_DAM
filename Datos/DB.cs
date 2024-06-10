@@ -3,6 +3,7 @@ using MongoDB.Bson.Serialization;
 using MongoDB.Driver;
 using ProyectoTFG.Modelos;
 using System.Text;
+using System.Text.RegularExpressions;
 
 namespace ProyectoTFG.Datos
 {
@@ -27,6 +28,30 @@ namespace ProyectoTFG.Datos
         //
         //  Metodos de User   -----------------
         //
+
+        public List<User> GetOnlyUsers()
+        {
+            var filter = Builders<User>.Filter.Eq("Rol", "user");
+            return usersCollection.Find(filter).ToList();
+        }
+
+        public List<User> GetOnlyTecnicos()
+        {
+            var filter = Builders<User>.Filter.Eq("Rol", "tecnico");
+            return usersCollection.Find(filter).ToList();
+        }
+
+        public List<User> GetOnlyAdmins()
+        {
+            var filter = Builders<User>.Filter.Eq("Rol", "admin");
+            return usersCollection.Find(filter).ToList();
+        }
+
+        public List<User> GetUsers()
+        {
+            var filter = Builders<User>.Filter.Empty;
+            return usersCollection.Find(filter).ToList();
+        }
         public bool ExisteUser(string email)
         {
             var filter = Builders<User>.Filter.Eq("Email", email) | Builders<User>.Filter.Eq("Apodo", email);
@@ -42,7 +67,11 @@ namespace ProyectoTFG.Datos
 
         public void MeterUser(string nombre, string apellidos, string email, string apodo, string pass, string rol)
         {
-            if (!ExisteUser(email)&& !ExisteUser(apodo)) // Si no hay ningun user con ese apodo o email
+            //regex para el email
+            string emailPattern = @"^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$";
+            Regex regex = new Regex(emailPattern);
+
+            if (!ExisteUser(email)&& !ExisteUser(apodo)&& regex.IsMatch(email)) // Si no hay ningun user con ese apodo o email
             {
                 User user = new User();
                 string hashedPassword = user.HashPassword(pass);
@@ -57,6 +86,10 @@ namespace ProyectoTFG.Datos
                 }
 
                 usersCollection.InsertOne(user);
+            }
+            else
+            {
+                throw new Exception("Ha habido un error");
             }
             
         }
@@ -80,6 +113,23 @@ namespace ProyectoTFG.Datos
             var user = usersCollection.Find(filter).FirstOrDefault();
 
             return user;
+        }
+
+
+        public bool UpdateUser(User user)
+        {
+            var filter = Builders<User>.Filter.Eq("_id", user.Id);
+            var update = Builders<User>.Update
+                .Set("Nombre", user.Nombre)
+                .Set("Apellidos", user.Apellidos)
+                .Set("Email", user.Email)
+                .Set("Apodo", user.Apodo)
+                .Set("Pass", user.Pass)
+                .Set("Rol", user.Rol);
+
+            var result = usersCollection.UpdateOne(filter, update);
+
+            return result.IsAcknowledged;
         }
 
 
@@ -110,6 +160,12 @@ namespace ProyectoTFG.Datos
             return ticketsCollection.Find(filter).ToList();
         }
 
+        public List<Ticket> GetTicketsAsignados(string email)
+        {
+            var filter = Builders<Ticket>.Filter.Eq("AsignadoA", email);
+            return ticketsCollection.Find(filter).ToList();
+        }
+
         public bool UpdateTicket(Ticket ticket)
         {
             var filter = Builders<Ticket>.Filter.Eq("_id", ticket.Id);
@@ -118,9 +174,13 @@ namespace ProyectoTFG.Datos
                 .Set("Descripcion", ticket.Descripcion)
                 .Set("Categoria", ticket.Categoria)
                 .Set("Prioridad", ticket.Prioridad)
-                .Set("FechaInicio", ticket.FechaInicio)
+                .Set("FechaUltimaModificacion", ticket.FechaUltimaModificacion)
                 .Set("Estado", ticket.Estado)
-                .Set("Usuario", ticket.Usuario);
+                .Set("Usuario", ticket.Usuario)
+                .Set("Imagen", ticket.Imagen)
+                .Set("AsignadoA", ticket.AsignadoA);
+
+
             var result = ticketsCollection.UpdateOne(filter, update);
 
             return result.IsAcknowledged;

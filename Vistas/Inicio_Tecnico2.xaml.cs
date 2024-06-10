@@ -2,8 +2,7 @@ namespace ProyectoTFG.Vistas;
 using ProyectoTFG.Datos;
 using ProyectoTFG.Modelos;
 using System.Collections.ObjectModel;
-
-public partial class Inicio_Tecnico : ContentPage
+public partial class Inicio_Tecnico2 : ContentPage
 {
     public ObservableCollection<Ticket> Tickets { get; set; }
     DB db = new DB();
@@ -11,17 +10,16 @@ public partial class Inicio_Tecnico : ContentPage
     private bool isUpdating;
     private bool botonBorrar;
     private bool ascendente = true;
+    public Inicio_Tecnico2()
+	{
+        InitializeComponent();
 
-    public Inicio_Tecnico()
-    {
-        InitializeComponent(); 
-
-        Tickets = new ObservableCollection<Ticket>(db.GetTickets());
+        Tickets = new ObservableCollection<Ticket>(db.GetTicketsAsignados(_AppShell_Inicio.userShell.Email));
         Tickets = new ObservableCollection<Ticket>(Tickets.Reverse());
 
         this.BindingContext = this;
         collection1.SelectionChanged += Collection_SelectionChanged;
-        
+
 
         Thread hilo = new Thread(async () =>
         {
@@ -41,7 +39,7 @@ public partial class Inicio_Tecnico : ContentPage
     }
     public async Task UpdateTickets()
     {
-        ObservableCollection<Ticket> updatedTickets = new ObservableCollection<Ticket>(db.GetTickets());
+        ObservableCollection<Ticket> updatedTickets = new ObservableCollection<Ticket>(db.GetTicketsAsignados(_AppShell_Inicio.userShell.Email));
         //updatedTickets = new ObservableCollection<Ticket>(updatedTickets.Reverse());
         Device.BeginInvokeOnMainThread(() =>
         {
@@ -55,7 +53,7 @@ public partial class Inicio_Tecnico : ContentPage
 
     public async Task UpdateTicketsHilo()
     {
-        ObservableCollection<Ticket> updatedTickets = new ObservableCollection<Ticket>(db.GetTickets());
+        ObservableCollection<Ticket> updatedTickets = new ObservableCollection<Ticket>(db.GetTicketsAsignados(_AppShell_Inicio.userShell.Email));
 
         if (updatedTickets.Count == Tickets.Count)
         {
@@ -79,7 +77,7 @@ public partial class Inicio_Tecnico : ContentPage
             return;
         }
 
-        Navigation.PushModalAsync(new Inicio_Tecnico_Ticket(ticket, this));
+        Navigation.PushModalAsync(new Inicio_Tecnico_Ticket(ticket, this, true));
         collection1.SelectedItem = null;
     }
 
@@ -324,16 +322,16 @@ public partial class Inicio_Tecnico : ContentPage
     {
         if (CambiarEstado.SelectedItem.ToString() == "En proceso")
             await DisplayAlert("Se le asignarán las incidencias seleccionadas", "", "Aceptar");
-            foreach (Ticket ticket in Tickets)
+        foreach (Ticket ticket in Tickets)
+        {
+            if (ticket.IsChecked == true)
             {
-                if (ticket.IsChecked == true)
-                {
-                 if (CambiarEstado.SelectedItem.ToString() == "En proceso") ticket.AsignadoA = _AppShell_Inicio.userShell.Email;
-                    ticket.Estado = CambiarEstado.SelectedItem.ToString();
+                if (CambiarEstado.SelectedItem.ToString() == "En proceso") ticket.AsignadoA = _AppShell_Inicio.userShell.Email;
+                ticket.Estado = CambiarEstado.SelectedItem.ToString();
                 db.UpdateTicket(ticket);
-                }
-                
             }
+
+        }
         UpdateTickets();
     }
 
@@ -344,7 +342,7 @@ public partial class Inicio_Tecnico : ContentPage
         {
             foreach (Ticket ticket in Tickets)
             {
-                if (ticket.IsChecked == true && ticket.Estado=="Terminado")
+                if (ticket.IsChecked == true && ticket.Estado == "Terminado")
                 {
                     db.DeleteTicket(ticket);
                 }
