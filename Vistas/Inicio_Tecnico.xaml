@@ -3,7 +3,8 @@
     x:Class="ProyectoTFG.Vistas.Inicio_Tecnico"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Inicio_Tecnico">
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{DynamicResource ColorFondoSecundario}">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*" />
@@ -45,11 +46,10 @@
                                 Grid.Column="0"
                                 BackgroundColor="Transparent"
                                 Clicked="btnSeleccion_Clicked"
-                                HeightRequest="10"
                                 HorizontalOptions="Center"
                                 Source="deseleccion.png"
                                 VerticalOptions="Center"
-                                WidthRequest="5" />
+                                WidthRequest="45" />
                             <Label
                                 Grid.Column="1"
                                 FontAttributes="Bold"
@@ -202,14 +202,14 @@
                     HorizontalOptions="FillAndExpand"
                     IsVisible="False"
                     LineBreakMode="TailTruncation"
-                    Text="Borrar definitivamente" />
+                    Text="Borrar" />
                 <Button
                     x:Name="BorrarTerminados"
                     Clicked="BorrarTerminados_Clicked"
                     HorizontalOptions="FillAndExpand"
                     IsVisible="False"
                     LineBreakMode="TailTruncation"
-                    Text="Borrar definitivamente" />
+                    Text="Borrar terminadas" />
 
             </StackLayout>
 
@@ -220,6 +220,7 @@
                     IsVisible="False"
                     SelectedIndexChanged="CambiarPrioridad_SelectedIndexChanged"
                     TextColor="Transparent"
+                    BackgroundColor="Transparent"
                     ZIndex="10">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
@@ -242,6 +243,7 @@
                     IsVisible="False"
                     SelectedIndexChanged="CambiarEstado_SelectedIndexChanged"
                     TextColor="Transparent"
+                    BackgroundColor="Transparent"
                     ZIndex="10">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">

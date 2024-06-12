@@ -4,7 +4,8 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     Padding="25"
-    NavigationPage.HasNavigationBar="False">
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{DynamicResource ColorFondoPrimario}">
 
     <Grid RowSpacing="10">
         <Grid.ColumnDefinitions>
@@ -34,27 +35,28 @@
                 VerticalOptions="Center">
 
                 <!--  Boton perfil  -->
-                <VerticalStackLayout Spacing="10">
+                <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
                     <ImageButton
+                        HorizontalOptions="Center"
                         Clicked="ImageButton_Invitado"
                         CornerRadius="75"
                         HeightRequest="150"
                         SemanticProperties.Description="Iniciar sesión como invitado"
-                        Source="anadir_perfil.png"
+                        Source="user.png"
                         ToolTipProperties.Text="Perfil 1"
                         WidthRequest="150" />
-                    <Label HorizontalOptions="Center" Text="Invitado" />
+                    <Label HorizontalOptions="Center" Text="Invitado"/>
                 </VerticalStackLayout>
                 <!--  Boton Invitado  -->
-                <VerticalStackLayout Spacing="10">
+                <VerticalStackLayout Spacing="10" HorizontalOptions="Center">
                     <ImageButton
                         x:Name="btnUser"
                         Clicked="ImageButton_Usuario"
-                        
+                        HorizontalOptions="Center"
                         CornerRadius="75"
                         HeightRequest="150"
                         SemanticProperties.Description="Iniciar sesión con este usuario"
-                        Source="anadir_perfil.png"
+                        Source="user.png"
                         ToolTipProperties.Text="Perfil 1"
                         WidthRequest="150" 
                         IsVisible="False"/>

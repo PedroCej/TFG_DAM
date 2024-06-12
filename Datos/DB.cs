@@ -115,6 +115,23 @@ namespace ProyectoTFG.Datos
             return user;
         }
 
+        public byte[] ObtenerFotoPerfil(string email)
+        {
+            var filter = Builders<User>.Filter.Eq("Email", email) | Builders<User>.Filter.Eq("Apodo", email);
+            var user = usersCollection.Find(filter).FirstOrDefault();
+            if (user == null)
+            {
+                return null;
+            }
+            if (user.FotoPerfil != null)
+            {
+                return user.FotoPerfil;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         public bool UpdateUser(User user)
         {
@@ -125,7 +142,9 @@ namespace ProyectoTFG.Datos
                 .Set("Email", user.Email)
                 .Set("Apodo", user.Apodo)
                 .Set("Pass", user.Pass)
-                .Set("Rol", user.Rol);
+                .Set("Rol", user.Rol)
+                .Set("Opciones", user.Opciones)
+                .Set("FotoPerfil", user.FotoPerfil);
 
             var result = usersCollection.UpdateOne(filter, update);
 

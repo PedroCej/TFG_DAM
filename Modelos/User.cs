@@ -26,6 +26,8 @@ namespace ProyectoTFG.Modelos
         public string Rol { get; set; }
         [BsonElement("Opciones")]
         public Opciones Opciones { get; set; }
+        [BsonElement("FotoPerfil")]
+        public byte[] FotoPerfil { get; set; }
 
         public User()
         {
@@ -65,6 +67,14 @@ namespace ProyectoTFG.Modelos
             if (hashedPassword!= null && pass != null)
             return BCrypt.Net.BCrypt.Verify(hashedPassword, pass);
             else return false;
+        }
+
+        public bool UpdatePassword(string pass)
+        {
+            // Genera el hash de la contraseña con bcrypt
+            string hashedPassword = BCrypt.Net.BCrypt.HashPassword(pass);
+            this.Pass = hashedPassword;
+            return true;
         }
     }
 }

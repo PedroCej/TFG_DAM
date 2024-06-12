@@ -18,8 +18,10 @@ public partial class Login : ContentPage
         if(nombreUsuario != null && nombreUsuario != string.Empty)
         {
             txtPerfil.Text = nombreUsuario;
+            btnUser.Source = ImageSource.FromStream(() => new MemoryStream(db.ObtenerFotoPerfil(nombreUsuario)));
             verPerfil();
         }
+
             
     }
 
@@ -47,7 +49,7 @@ public partial class Login : ContentPage
 
     private void ImageButton_Invitado(object sender, EventArgs e)
     {
-
+        Application.Current.MainPage = new _AppShell_Inicio();
     }
 
     private void Button_Register(object sender, EventArgs e)
@@ -73,7 +75,14 @@ public partial class Login : ContentPage
     {
        if(db.LoginUser(txtUser.Text, txtPass.Text) && txtPerfil.Text != null && txtPass.Text != null)
         {
-            Application.Current.MainPage = new _AppShell_Inicio(txtUser.Text);
+            try
+            {
+                Application.Current.MainPage = new _AppShell_Inicio(txtUser.Text);
+            }catch (Exception ex)
+            {
+                DisplayAlert("Error", "error: "+ex, "Aceptar");
+            }
+            
         }
         else
         {

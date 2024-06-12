@@ -3,11 +3,88 @@
     x:Class="ProyectoTFG.Vistas.Inicio_Ajustes"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Title="Inicio_Ajustes">
-    <VerticalStackLayout>
-        <Label
-            HorizontalOptions="Center"
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" />
-    </VerticalStackLayout>
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{DynamicResource ColorFondoSecundario}"
+    >
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="0.05*" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="0.05*" />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+
+        <VerticalStackLayout Grid.Row="0" Grid.Column="1">
+            <!--  Cabecera  -->
+
+        </VerticalStackLayout>
+
+        <Grid ColumnDefinitions="*,*"
+            Grid.Row="1"
+            Grid.Column="1"
+              ColumnSpacing="20"
+            VerticalOptions="Center" HorizontalOptions="FillAndExpand">
+            <!--  Contenido  -->
+
+            <ScrollView VerticalOptions="Start" RadioButtonGroup.GroupName="Temas" Grid.Column="0" Padding="0,0,10,0">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Ajustes de aplicación" Style="{DynamicResource lblTitulo}"/>
+                    <Label Text="Cambiar tema" Style="{DynamicResource lblTitulo2}"/>
+                    <RadioButton x:Name="defaultTema" Value="0" Content="Tema Original" GroupName="Temas" CheckedChanged="RadioButton_CheckedChanged"></RadioButton>
+                    <RadioButton x:Name="claroTema" Value="1" Content="Tema Claro" GroupName="Temas" CheckedChanged="RadioButton_CheckedChanged"></RadioButton>
+                    <RadioButton x:Name="oscuroTema" Value="2" Content="Tema Oscuro" GroupName="Temas" CheckedChanged="RadioButton_CheckedChanged"></RadioButton>
+
+                    <Slider x:Name="miSlider" ValueChanged="Slider_ValueChanged"
+                     Minimum="1" Maximum="2" Value="1"/>
+
+                    <Label Text="Titulo de prueba" Style="{DynamicResource lblTitulo}"/>
+                    <Label Text="Así se verán los titulos" Style="{DynamicResource lblTitulo2}"/>
+                    <Label Text="Texto de prueba, así se ve el resto de la aplicación." />
+                </VerticalStackLayout>
+                
+
+            </ScrollView>
+
+            <ScrollView Grid.Column="1" Padding="0,0,10,0">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Ajustes de usuario" Style="{DynamicResource lblTitulo}"/>
+                    <Label Text="Cambiar Nombre y Apellidos" Style="{DynamicResource lblTitulo2}"/>
+                    <Entry x:Name="entryNombre" Placeholder="Nombre"/>
+                    <Entry x:Name="entryApellidos" Placeholder="Apellidos"/>
+                    <Label Text="Cambiar Contraseña" Style="{DynamicResource lblTitulo2}"/>
+                    <Entry x:Name="entryContrasena" IsPassword="True" Placeholder="Contraseña"/>
+                    <Entry x:Name="entryContrasena2" IsPassword="True" Placeholder="Repetir contraseña"/>
+                    <HorizontalStackLayout Spacing="10">
+                        <Label Text="Email: "/>
+                        <Label x:Name="lblEmail" Text="Email" FontAttributes="Bold"/>
+                        <Label Text="-   Rol: "/>
+                        <Label x:Name="lblRol" Text="Usuario" FontAttributes="Bold"/>
+                    </HorizontalStackLayout>
+                    <Label Text="Foto de Perfil" HorizontalOptions="Center" Style="{DynamicResource lblTitulo2}"/>
+                <ImageButton x:Name="btnFoto" Source="images.png" Clicked="btnFoto_Clicked" BackgroundColor="Transparent" VerticalOptions="Center" HorizontalOptions="Center" MaximumHeightRequest="200"/>
+
+                    
+                </VerticalStackLayout>
+                
+
+            </ScrollView>
+            
+
+        </Grid>
+
+        <VerticalStackLayout
+            Grid.Row="2"
+            Grid.Column="1"
+            Background="Transparent"
+            Spacing="10">
+            <!--  Footer  -->
+            <Button Text="Guardar cambios" Clicked="Button_Clicked" />
+        </VerticalStackLayout>
+
+    </Grid>
 </ContentPage>

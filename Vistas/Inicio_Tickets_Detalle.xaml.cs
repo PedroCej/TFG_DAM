@@ -18,9 +18,9 @@ public partial class Inicio_Tickets_Detalle : ContentPage
         this.pagTickets = pagTickets;
         Titulo.Text = ticket.Titulo;
         Descripcion.Text = ticket.Descripcion;
-        if(ticket.Prioridad == "ZBaja")
+        if(ticket.Prioridad == "Alta")
         {
-            Prioridad.Value = 1;
+            Prioridad.Value = 3;
         }
         else if (ticket.Prioridad == "Media")
         {
@@ -28,7 +28,7 @@ public partial class Inicio_Tickets_Detalle : ContentPage
         }
         else
         {
-            Prioridad.Value = 3;
+            Prioridad.Value = 1;
         }
 
         if(ticket.Imagen!=null)

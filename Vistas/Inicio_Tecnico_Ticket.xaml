@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoTFG.Vistas.Inicio_Tecnico_Ticket"
-             Title="Inicio_Tecnico_Ticket"
+             Shell.NavBarIsVisible="False"
              BackgroundColor="Transparent">
     <Grid
         BackgroundColor="#01999999"
@@ -12,25 +12,22 @@
         <Frame
             Grid.Row="1"
             Grid.Column="1"
-            Margin="200,0,0,0"
             Padding="20"
-            BackgroundColor="#666666"
+            BackgroundColor="{DynamicResource ColorFondoPrimario}"
             ZIndex="10">
             <VerticalStackLayout Spacing="15">
                 <Entry
                     x:Name="Titulo"
-                    BackgroundColor="#666666"
+                    FontAttributes="Bold"
                     HorizontalOptions="StartAndExpand"
                     IsEnabled="False"
                     PlaceholderColor="#cccccc" />
                 <Editor
                     x:Name="Descripcion"
                     AutoSize="TextChanges"
-                    BackgroundColor="#666666"
                     IsEnabled="False"
                     MaxLength="500"
                     MaximumHeightRequest="200"
-                    PlaceholderColor="#cccccc"
                     VerticalTextAlignment="Start" />
                 <Grid
                     ColumnDefinitions="*,0.5*"
@@ -62,7 +59,6 @@
                             HorizontalOptions="Start"
                             HorizontalTextAlignment="Center"
                             Text="No muy importante"
-                            TextColor="White"
                             VerticalTextAlignment="Center" />
                         <Label
                             Grid.Row="0"
@@ -70,7 +66,6 @@
                             HorizontalOptions="Center"
                             HorizontalTextAlignment="Center"
                             Text="Medio"
-                            TextColor="White"
                             VerticalTextAlignment="End" />
                         <Label
                             Grid.Row="0"
@@ -78,7 +73,6 @@
                             HorizontalOptions="End"
                             HorizontalTextAlignment="Center"
                             Text="Muy importante"
-                            TextColor="White"
                             VerticalTextAlignment="End" />
                         <Slider
                             x:Name="Prioridad"
@@ -143,27 +137,21 @@
                         VerticalOptions="FillAndExpand">
                         <Button
                             x:Name="btnHabilitar"
-                            BackgroundColor="#666666"
                             Clicked="btnHabilitar_Clicked"
                             HorizontalOptions="FillAndExpand"
                             Text="Habilitar edición"
-                            TextColor="White"
                             VerticalOptions="FillAndExpand" />
                         <Button
                             x:Name="btnAplicar"
-                            BackgroundColor="#666666"
                             Clicked="btnAplicar_Clicked"
                             HorizontalOptions="FillAndExpand"
                             Text="Aplicar cambios"
-                            TextColor="White" 
                             IsEnabled="False"/>
                         <Button
                             x:Name="btnVoler"
-                            BackgroundColor="#666666"
                             Clicked="btnVoler_Clicked"
                             HorizontalOptions="FillAndExpand"
-                            Text="Volver"
-                            TextColor="White" />
+                            Text="Volver" />
                     </StackLayout>
 
                     <ImageButton
@@ -173,6 +161,7 @@
                         Clicked="btnImagen_Clicked"
                         HorizontalOptions="FillAndExpand"
                         MaximumHeightRequest="200"
+                        MaximumWidthRequest="400"
                         Source="images.png"
                         VerticalOptions="Center" />
 

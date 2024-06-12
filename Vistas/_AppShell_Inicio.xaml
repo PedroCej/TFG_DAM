@@ -5,35 +5,61 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ProyectoTFG"
     xmlns:misPaginas="clr-namespace:ProyectoTFG.Vistas"
-    Title="ProyectoTFG"
-    FlyoutBackgroundColor="#000000f3"
-    Shell.FlyoutBehavior="Locked"
-    Shell.FlyoutWidth="200">
+    FlyoutBackgroundColor="{DynamicResource ColorFondoPrimario}"
+    Shell.TabBarBackgroundColor="{DynamicResource ColorFondoPrimario}"
+    Shell.TabBarTitleColor="{DynamicResource ColorFondoLetra}"
+    Shell.TabBarUnselectedColor="{DynamicResource ColorFondoLetra2}"
+    Shell.ForegroundColor="{DynamicResource ColorDestaca}"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutWidth="300">
 
 
-    <FlyoutItem
+
+        <FlyoutItem
         Title="Inicio"
-        FlyoutIcon="home.png"
-        Icon="home.png">
+        FlyoutIcon="{DynamicResource iconoInicio}">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio}" Route="home" />
     </FlyoutItem>
-    <FlyoutItem Title="Tickets" Icon="warning.png">
+    <FlyoutItem x:Name="pagTickets" Title="Tickets" FlyoutIcon="{DynamicResource iconoTickets}">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Tickets}" />
     </FlyoutItem>
-    <FlyoutItem x:Name="pagTecnico" Title="Técnico" Icon="tecnico.png">
+    <FlyoutItem x:Name="pagTecnico" Title="Técnico" FlyoutIcon="{DynamicResource iconoTecnico}">
         <ShellContent Title="Todos los tickets" ContentTemplate="{DataTemplate misPaginas:Inicio_Tecnico}" />
         <ShellContent Title="Asignados" ContentTemplate="{DataTemplate misPaginas:Inicio_Tecnico2}" />
     </FlyoutItem>
-    <FlyoutItem x:Name="pagAdmin" Title="Administración" Icon="admin.png">
+    <FlyoutItem x:Name="pagAdmin" Title="Administración" FlyoutIcon="{DynamicResource iconoAdmin}">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Admin}" />
     </FlyoutItem>
-    <FlyoutItem Title="Ajustes" Icon="settings.png">
+    <FlyoutItem x:Name="pagConf" Title="Ajustes" FlyoutIcon="{DynamicResource iconoAjustes}">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Ajustes}" />
     </FlyoutItem>
-    <FlyoutItem Title="Salir" Icon="salir.png">
+    <FlyoutItem Title="Salir" FlyoutIcon="{DynamicResource iconoSalir}">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Salir}" />
     </FlyoutItem>
 
+    <Shell.FlyoutFooterTemplate>
+        <DataTemplate>
+            <StackLayout Padding="0,10,0,30" Spacing="10">
+                <Label Text="{DynamicResource user}"
+                       FontSize="Title"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center" />
+                <ImageButton
+                    BorderWidth="2"
+                    BorderColor="Grey"
+                    x:Name="imgUser"
+                    CornerRadius="100"
+                    Source="{DynamicResource imgPerfil}"
+                    Aspect="Fill"
+                    HeightRequest="75"
+                    WidthRequest="75"
+                    HorizontalOptions="Center"
+                    VerticalOptions="Center"
+                    />
+
+            </StackLayout>
+        </DataTemplate>
+    </Shell.FlyoutFooterTemplate>
 
 
 </Shell>

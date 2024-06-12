@@ -4,7 +4,9 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ProyectoTFG"
-    Title="Inicio_Tickets">
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{DynamicResource ColorFondoSecundario}"
+    >
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -40,7 +42,7 @@
                     <CollectionView.Header>
                         <Grid
                             Padding="3"
-                            ColumnDefinitions="auto,auto,*,auto,auto,auto"
+                            ColumnDefinitions="auto,*,*,auto,auto,auto"
                             ColumnSpacing="10"
                             RowDefinitions="auto">
                             <ImageButton
@@ -48,11 +50,10 @@
                                 Grid.Column="0"
                                 BackgroundColor="Transparent"
                                 Clicked="btnSeleccion_Clicked"
-                                HeightRequest="10"
                                 HorizontalOptions="Center"
-                                Source="deseleccion.png"
+                                Source="deseleccion_dark.png"
                                 VerticalOptions="Center"
-                                WidthRequest="5" />
+                                WidthRequest="45"/>
                             <Label
                                 Grid.Column="1"
                                 FontAttributes="Bold"
@@ -130,7 +131,7 @@
                         <DataTemplate x:Name="dataTemplate">
                             <Grid
                                 Padding="3"
-                                ColumnDefinitions="auto,auto,*,auto,auto,auto"
+                                ColumnDefinitions="auto,*,*,auto,auto,auto"
                                 ColumnSpacing="10"
                                 RowDefinitions="auto">
                                 <CheckBox

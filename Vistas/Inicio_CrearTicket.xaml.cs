@@ -46,9 +46,12 @@ public partial class Inicio_CrearTicket : ContentPage
         }
         try
         {
+            string email = "Invitado";
+            if (_AppShell_Inicio.userShell!=null) 
+                email = _AppShell_Inicio.userShell.Email;
             if (Titulo.Text != null && Descripcion.Text != null)
             {
-            db.UserMeterTicket(Titulo.Text, Descripcion.Text, miPicker.SelectedItem.ToString(), prioridad, DateTime.Now, _AppShell_Inicio.userShell.Email, imagen);
+            db.UserMeterTicket(Titulo.Text, Descripcion.Text, miPicker.SelectedItem.ToString(), prioridad, DateTime.Now, email, imagen);
             DisplayAlert("Incidencia creada", "Se ha creado la incidencia correctamente", "Aceptar");
             Navigation.PopModalAsync();
             }

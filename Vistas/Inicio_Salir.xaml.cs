@@ -17,7 +17,7 @@ public partial class Inicio_Salir : ContentPage
     {
         bool pregunta = await DisplayAlert("¿Volver a la pagina principal?", "", "Sí", "No");
         if (pregunta)
-            Application.Current.MainPage = new _AppShell_Inicio();
+            Application.Current.MainPage = new _AppShell_Inicio(_AppShell_Inicio.userShell.Email);
     }
 
 

@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProyectoTFG.Resources.Temas.TemaDefault">
+
+    <Color x:Key="ColorFondoPrimario">#BFEEB7</Color>
+    <Color x:Key="ColorFondoSecundario">#DDFAD6</Color>
+    <Color x:Key="ColorFondoLetra">#101010</Color>
+    <Color x:Key="ColorFondoLetra2">#606060</Color>
+    <Color x:Key="ColorDestaca">#FFCC00</Color>
+    <Color x:Key="ColorDestacaNo">#101010</Color>
+    
+
+    <x:Double x:Key="tamanoLetra">15</x:Double>
+    <x:Double x:Key="tamanoLetraTitulo">40</x:Double>
+    <x:Double x:Key="tamanoLetraTitulo2">20</x:Double>
+
+    <!-- ICONOS -->
+    <x:String x:Key="iconoInicio">home_dark.png</x:String>
+    <x:String x:Key="iconoTickets">warning_dark.png</x:String>
+    <x:String x:Key="iconoTecnico">tecnico_dark.png</x:String>
+    <x:String x:Key="iconoAdmin">admin_dark.png</x:String>
+    <x:String x:Key="iconoAjustes">settings_dark.png</x:String>
+    <x:String x:Key="iconoSalir">salir_dark.png</x:String>
+    <x:String x:Key="iconoAscendente">ascendente_dark.png</x:String>
+    <x:String x:Key="iconoDescendente">descendente_dark.png</x:String>
+
+
+    <!-- LABELS -->
+    <Style TargetType="Label">
+        <Setter Property="CharacterSpacing" Value="1"/>
+        <Setter Property="FontFamily" Value="GibstoneTrial-Regular.ttf"/>
+        <Setter Property="TextColor" Value="{DynamicResource ColorFondoLetra}"></Setter>
+        <Setter Property="LineBreakMode" Value="TailTruncation"/>
+        <Setter Property="FontSize" Value="{DynamicResource tamanoLetra}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="lblTitulo">
+        <Setter Property="TextColor" Value="{DynamicResource ColorFondoLetra}"></Setter>
+        <Setter Property="LineBreakMode" Value="TailTruncation"/>
+        <Setter Property="FontAttributes" Value="Bold"/>
+        <Setter Property="FontSize" Value="{DynamicResource tamanoLetraTitulo}"/>
+    </Style>
+
+    <Style TargetType="Label" x:Key="lblTitulo2">
+        <Setter Property="TextColor" Value="{DynamicResource ColorFondoLetra}"></Setter>
+        <Setter Property="LineBreakMode" Value="TailTruncation"/>
+        <Setter Property="FontSize" Value="{DynamicResource tamanoLetraTitulo2}"/>
+    </Style>
+
+    <!-- BOTONES -->
+    <Style TargetType="Button">
+        <Setter Property="TextColor" Value="{DynamicResource ColorDestacaNo}"></Setter>
+        <Setter Property="FontSize" Value="{DynamicResource tamanoLetra}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource ColorDestaca}"/>
+        <Setter Property="CornerRadius" Value="10"/>
+        <Setter Property="Padding" Value="5,10,5,10"/>
+    </Style>
+
+    <Style TargetType="RadioButton">
+        <Setter Property="TextColor" Value="{DynamicResource ColorFondoLetra}"></Setter>
+        <Setter Property="BackgroundColor" Value="Transparent"></Setter>
+        <Setter Property="FontSize" Value="{DynamicResource tamanoLetra}"></Setter>
+    </Style>
+
+    <Style TargetType="Entry">
+        <Setter Property="TextColor" Value="{DynamicResource ColorFondoLetra}"></Setter>
+        <Setter Property="FontSize" Value="{DynamicResource tamanoLetra}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource ColorFondoSecundario}"/>
+        <Setter Property="PlaceholderColor" Value="#B3B3B3"/>
+    </Style>
+
+    <Style TargetType="Editor">
+        <Setter Property="TextColor" Value="{DynamicResource ColorFondoLetra}"></Setter>
+        <Setter Property="FontSize" Value="{DynamicResource tamanoLetra}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource ColorFondoSecundario}"/>
+        <Setter Property="PlaceholderColor" Value="#B3B3B3"/>
+    </Style>
+
+    <Style TargetType="Picker">
+        <Setter Property="TextColor" Value="{DynamicResource ColorFondoLetra}"></Setter>
+        <Setter Property="FontSize" Value="{DynamicResource tamanoLetra}" />
+        <Setter Property="BackgroundColor" Value="{DynamicResource ColorFondoSecundario}"/>
+        <Setter Property="TitleColor" Value="{DynamicResource ColorFondoLetra}"></Setter>
+
+    </Style>
+
+    <Style TargetType="Slider">
+        <Setter Property="ThumbColor" Value="{DynamicResource ColorDestaca}" />
+        <Setter Property="MinimumTrackColor" Value="{DynamicResource ColorDestacaNo }" />
+        <Setter Property="MaximumTrackColor" Value="{DynamicResource  ColorDestaca }" />
+    </Style>
+
+    <Style TargetType="CheckBox">
+        <Setter Property="Color" Value="{DynamicResource ColorDestaca}"></Setter>
+
+    </Style>
+
+</ResourceDictionary>

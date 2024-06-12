@@ -69,6 +69,7 @@
 	  <None Remove=".gitignore" />
 	  <None Remove="LICENSE.txt" />
 	  <None Remove="README.md" />
+	  <None Remove="Resources\Fonts\GibstoneTrial-Regular.ttf" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -81,7 +82,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Folder Include="Resources\Temas\" />
 	  <Folder Include="Servicios\" />
 	</ItemGroup>
 
@@ -96,6 +96,15 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Resources\Idiomas\espanol.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Temas\TemaClaro.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Temas\TemaDefault.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Resources\Temas\TemaOscuro.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Vistas\Inicio.xaml">

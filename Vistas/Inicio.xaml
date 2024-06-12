@@ -3,7 +3,8 @@
     x:Class="ProyectoTFG.Vistas.Inicio"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    NavigationPage.HasNavigationBar="False">
+    Shell.NavBarIsVisible="False"
+    BackgroundColor="{DynamicResource ColorFondoPrimario}">
 
     <Grid RowSpacing="10">
         <Grid.ColumnDefinitions>
@@ -13,7 +14,6 @@
         </Grid.ColumnDefinitions>
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
@@ -23,23 +23,23 @@
 
         </VerticalStackLayout>
 
-        <VerticalStackLayout Grid.Row="1" Grid.Column="1">
+        <StackLayout x:Name="miLayout" HorizontalOptions="Center" VerticalOptions="Center" Grid.RowSpan="2" Grid.Row="0" Grid.Column="1">
             <!--  Contenido  -->
-            <ScrollView>
-                <StackLayout Orientation="Vertical" Spacing="10">
-                    <Label
-                        FontSize="Large"
-                        HorizontalOptions="Center"
-                        Text="Bienvenido a .NET MAUI!"
-                        VerticalOptions="Center" />
-                </StackLayout>
-            </ScrollView>
-        </VerticalStackLayout>
+            <WebView x:Name="web"
+        Source="https://www.cifpcuenca.es"
+        WidthRequest="100"
+    HeightRequest="100"
+        HorizontalOptions="FillAndExpand"
+        VerticalOptions="FillAndExpand"
+        />
 
-        <VerticalStackLayout Grid.Row="2" Grid.Column="1" HorizontalOptions="End" Padding="0,0,0,15">
+
+        </StackLayout>
+
+        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End" Padding="0,0,0,30">
             <!--  Footer  -->
             <ImageButton
-                BackgroundColor="#80099993"
+                BackgroundColor="{DynamicResource ColorDestaca}"
                 Clicked="ImageButton_Clicked"
                 HorizontalOptions="Center"
                 Source="mas.png"
@@ -47,6 +47,7 @@
                 MaximumWidthRequest="100"
                 MaximumHeightRequest="100"
                 CornerRadius="100"
+                Opacity="0.98"
                 />
         </VerticalStackLayout>
 
