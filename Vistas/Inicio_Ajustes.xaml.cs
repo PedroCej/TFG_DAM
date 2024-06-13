@@ -13,11 +13,11 @@ public partial class Inicio_Ajustes : ContentPage
 	{
 		InitializeComponent();
         user = _AppShell_Inicio.userShell;
-        entryNombre.Text = user.Nombre;
-        entryApellidos.Text = user.Apellidos;
+        entryNombre.Placeholder = user.Nombre;
+        entryApellidos.Placeholder = user.Apellidos;
         lblEmail.Text = user.Email;
         lblRol.Text = user.Rol;
-        /*if(user.FotoPerfil != null)
+        if(user.FotoPerfil != null)
         {
             btnFoto.Source = ImageSource.FromStream(() => new MemoryStream(user.FotoPerfil));
         }
@@ -35,7 +35,7 @@ public partial class Inicio_Ajustes : ContentPage
                 defaultTema.IsChecked = true;
             }
             miSlider.Value = user.Opciones.TamLetra == "default" ? 1 : Double.Parse(user.Opciones.TamLetra);
-        }*/
+        }
     }
 
     private async void btnFoto_Clicked(object sender, EventArgs e)

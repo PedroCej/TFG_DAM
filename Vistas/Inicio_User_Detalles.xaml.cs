@@ -24,24 +24,31 @@ public partial class Inicio_User_Detalles : ContentPage
 
     private async void entryRol_SelectedIndexChanged(object sender, EventArgs e)
     {
-        if (entryRol.SelectedIndex == 0)
+        if (user.Rol != "admin")
         {
-            user.Rol = "user";
-        }
-        else if (entryRol.SelectedIndex == 1)
-        {
-            user.Rol = "tecnico";
+            if (entryRol.SelectedIndex == 0)
+            {
+                user.Rol = "user";
+            }
+            else if (entryRol.SelectedIndex == 1)
+            {
+                user.Rol = "tecnico";
+            }
+            else
+            {
+                user.Rol = "admin";
+            }
+            DB db = new DB();
+            db.UpdateUser(user);
+            await pagina.UpdateUsers();
+            await pagina.UpdateTecnicos();
+            await pagina.UpdateAdmins();
+            Navigation.PopModalAsync();
         }
         else
         {
-            user.Rol = "admin";
+            DisplayAlert("Error", "No puedes cambiar el rol de un administrador", "Aceptar");
         }
-        DB db = new DB();
-        db.UpdateUser(user);
-        await pagina.UpdateUsers();
-        await pagina.UpdateTecnicos();
-        await pagina.UpdateAdmins();
-        Navigation.PopModalAsync();
 
     }
 }

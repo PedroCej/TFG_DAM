@@ -8,7 +8,7 @@ public partial class Inicio : ContentPage
 	{
 		InitializeComponent();
         SizeChanged += OnPageSizeChanged;
-
+        animar();
 
     }
 
@@ -21,8 +21,20 @@ public partial class Inicio : ContentPage
     {
         web.WidthRequest = Width;
         web.HeightRequest = Height;
-
-
     }
+
+      private async void animar()
+    {
+        while (true)
+        {
+            await flecha.TranslateTo(-150, 0, 1000, Easing.Linear);
+    
+            await flecha.TranslateTo(0, 0, 1000, Easing.CubicInOut);
+        }
+    }
+
+
+   
+
 
 }

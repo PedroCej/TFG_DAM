@@ -36,8 +36,9 @@
 
         </StackLayout>
 
-        <VerticalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End" Padding="0,0,0,30">
+        <HorizontalStackLayout Grid.Row="1" Grid.Column="1" HorizontalOptions="End" Padding="0,0,0,30">
             <!--  Footer  -->
+            <Image x:Name="flecha" Source="flecha.png" WidthRequest="90" HeightRequest="90"/>
             <ImageButton
                 BackgroundColor="{DynamicResource ColorDestaca}"
                 Clicked="ImageButton_Clicked"
@@ -49,7 +50,8 @@
                 CornerRadius="100"
                 Opacity="0.98"
                 />
-        </VerticalStackLayout>
+            
+        </HorizontalStackLayout>
 
     </Grid>
 

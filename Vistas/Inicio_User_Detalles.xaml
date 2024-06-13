@@ -14,7 +14,8 @@
             Grid.Column="1"
             Padding="20"
             HorizontalOptions="Center"
-            ZIndex="10">
+            ZIndex="10"
+            BackgroundColor="{DynamicResource ColorFondoPrimario}">
             <VerticalStackLayout Spacing="15" HorizontalOptions="Center">
                 <HorizontalStackLayout Spacing="5">
                     <Label Text="Nombre:"/>

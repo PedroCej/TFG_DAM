@@ -42,7 +42,7 @@
                     <CollectionView.Header>
                         <Grid
                             Padding="3"
-                            ColumnDefinitions="auto,*,*,auto,auto,auto"
+                            ColumnDefinitions="auto,auto,*,auto,auto,auto"
                             ColumnSpacing="10"
                             RowDefinitions="auto">
                             <ImageButton
@@ -131,7 +131,7 @@
                         <DataTemplate x:Name="dataTemplate">
                             <Grid
                                 Padding="3"
-                                ColumnDefinitions="auto,*,*,auto,auto,auto"
+                                ColumnDefinitions="auto,auto,*,auto,auto,auto"
                                 ColumnSpacing="10"
                                 RowDefinitions="auto">
                                 <CheckBox

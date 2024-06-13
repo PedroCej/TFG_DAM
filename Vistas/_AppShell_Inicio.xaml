@@ -6,31 +6,41 @@
     xmlns:local="clr-namespace:ProyectoTFG"
     xmlns:misPaginas="clr-namespace:ProyectoTFG.Vistas"
     FlyoutBackgroundColor="{DynamicResource ColorFondoPrimario}"
+    Shell.FlyoutBehavior="Flyout"
+    Shell.FlyoutWidth="300"
+    Shell.ForegroundColor="{DynamicResource ColorDestaca}"
     Shell.TabBarBackgroundColor="{DynamicResource ColorFondoPrimario}"
     Shell.TabBarTitleColor="{DynamicResource ColorFondoLetra}"
-    Shell.TabBarUnselectedColor="{DynamicResource ColorFondoLetra2}"
-    Shell.ForegroundColor="{DynamicResource ColorDestaca}"
-    Shell.FlyoutBehavior="Flyout"
-    Shell.FlyoutWidth="300">
+    Shell.TabBarUnselectedColor="{DynamicResource ColorFondoLetra2}">
 
 
 
-        <FlyoutItem
-        Title="Inicio"
-        FlyoutIcon="{DynamicResource iconoInicio}">
+    <FlyoutItem Title="Inicio" FlyoutIcon="{DynamicResource iconoInicio}">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio}" Route="home" />
     </FlyoutItem>
-    <FlyoutItem x:Name="pagTickets" Title="Tickets" FlyoutIcon="{DynamicResource iconoTickets}">
+    <FlyoutItem
+        x:Name="pagTickets"
+        Title="Tickets"
+        FlyoutIcon="{DynamicResource iconoTickets}">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Tickets}" />
     </FlyoutItem>
-    <FlyoutItem x:Name="pagTecnico" Title="Técnico" FlyoutIcon="{DynamicResource iconoTecnico}">
+    <FlyoutItem
+        x:Name="pagTecnico"
+        Title="Técnico"
+        FlyoutIcon="{DynamicResource iconoTecnico}">
         <ShellContent Title="Todos los tickets" ContentTemplate="{DataTemplate misPaginas:Inicio_Tecnico}" />
         <ShellContent Title="Asignados" ContentTemplate="{DataTemplate misPaginas:Inicio_Tecnico2}" />
     </FlyoutItem>
-    <FlyoutItem x:Name="pagAdmin" Title="Administración" FlyoutIcon="{DynamicResource iconoAdmin}">
+    <FlyoutItem
+        x:Name="pagAdmin"
+        Title="Administración"
+        FlyoutIcon="{DynamicResource iconoAdmin}">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Admin}" />
     </FlyoutItem>
-    <FlyoutItem x:Name="pagConf" Title="Ajustes" FlyoutIcon="{DynamicResource iconoAjustes}">
+    <FlyoutItem
+        x:Name="pagConf"
+        Title="Ajustes"
+        FlyoutIcon="{DynamicResource iconoAjustes}">
         <ShellContent ContentTemplate="{DataTemplate misPaginas:Inicio_Ajustes}" />
     </FlyoutItem>
     <FlyoutItem Title="Salir" FlyoutIcon="{DynamicResource iconoSalir}">
@@ -40,22 +50,36 @@
     <Shell.FlyoutFooterTemplate>
         <DataTemplate>
             <StackLayout Padding="0,10,0,30" Spacing="10">
-                <Label Text="{DynamicResource user}"
-                       FontSize="Title"
-                       FontAttributes="Bold"
-                       HorizontalOptions="Center" />
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Title"
+                    HorizontalOptions="Center"
+                    Text="{DynamicResource user}" />
                 <ImageButton
-                    BorderWidth="2"
-                    BorderColor="Grey"
                     x:Name="imgUser"
-                    CornerRadius="100"
-                    Source="{DynamicResource imgPerfil}"
                     Aspect="Fill"
+                    BorderColor="Grey"
+                    BorderWidth="2"
+                    CornerRadius="100"
                     HeightRequest="75"
-                    WidthRequest="75"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    />
+                    WidthRequest="75" />
+                <Frame
+                    Grid.Row="0"
+                    Grid.ColumnSpan="3"
+                    CornerRadius="100"
+                    HeightRequest="100"
+                    WidthRequest="100"
+                    BorderColor="Grey">
+                    <Image
+                        x:Name="imagenPerfil"
+                        Aspect="Fill"
+                        HeightRequest="100"
+                        Source="{DynamicResource imgPerfil}"
+                        WidthRequest="100" />
+
+                </Frame>
 
             </StackLayout>
         </DataTemplate>

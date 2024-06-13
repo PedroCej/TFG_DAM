@@ -383,7 +383,7 @@ public partial class Inicio_Tecnico2 : ContentPage
 
     private bool oscuro()
     {
-        foreach (var resourceDictionary in Application.Current.Resources.MergedDictionaries)
+        /*foreach (var resourceDictionary in Application.Current.Resources.MergedDictionaries)
         {
             if (resourceDictionary.ContainsKey("TemaClaro"))
             {
@@ -394,6 +394,8 @@ public partial class Inicio_Tecnico2 : ContentPage
                 return false;
             }
         }
-        return true;
+        return true;*/
+        if (_AppShell_Inicio.userShell.Opciones.Tema == "oscuro") { return false; }
+        else { return true;}
     }
 }

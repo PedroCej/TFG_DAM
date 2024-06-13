@@ -328,7 +328,7 @@ public partial class Inicio_Tickets : ContentPage
 
     private bool oscuro()
     {
-        foreach (var resourceDictionary in Application.Current.Resources.MergedDictionaries)
+        /*foreach (var resourceDictionary in Application.Current.Resources.MergedDictionaries)
         {
             if (resourceDictionary.ContainsKey("TemaClaro"))
             {
@@ -339,6 +339,8 @@ public partial class Inicio_Tickets : ContentPage
                 return false;
             }
         }
-        return true;
+        return true;*/
+        if (_AppShell_Inicio.userShell.Opciones.Tema == "oscuro") { return false; }
+        else { return true; }
     }
 }

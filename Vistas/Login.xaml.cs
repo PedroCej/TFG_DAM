@@ -71,12 +71,23 @@ public partial class Login : ContentPage
         verPerfil();
     }
 
-    private void Button_Login(object sender, EventArgs e)
+    private async void Button_Login(object sender, EventArgs e)
     {
        if(db.LoginUser(txtUser.Text, txtPass.Text) && txtPerfil.Text != null && txtPass.Text != null)
         {
             try
             {
+                /*if(nombreUsuario != txtUser.Text)
+                {
+                    bool pregunta = await DisplayAlert("Inicio de sesión", "¿Quieres guardar el usuario?", "Sí", "No");
+                    if (pregunta)
+                    {
+                        Preferences.Set("nombreUsuario", txtUser.Text);
+                    }
+                }
+                
+                */
+                guardarUser();
                 Application.Current.MainPage = new _AppShell_Inicio(txtUser.Text);
             }catch (Exception ex)
             {
@@ -124,4 +135,25 @@ public partial class Login : ContentPage
     {
         txtPass.Focus();
     }
+
+    private void guardarUser()
+    {
+        Thread thread = new Thread(() =>
+        {
+            if (nombreUsuario != txtUser.Text)
+            {
+                Device.BeginInvokeOnMainThread(async () =>
+                {
+                    bool pregunta = await DisplayAlert("Inicio de sesión", "¿Quieres guardar el usuario?", "Sí", "No");
+                    if (pregunta)
+                    {
+                        Preferences.Set("nombreUsuario", txtUser.Text);
+                    }
+                });
+            }
+        });
+        thread.IsBackground = true;
+        thread.Start();
+    }
+
 }
