@@ -18,8 +18,15 @@ public partial class Login : ContentPage
         if(nombreUsuario != null && nombreUsuario != string.Empty)
         {
             txtPerfil.Text = nombreUsuario;
-            btnUser.Source = ImageSource.FromStream(() => new MemoryStream(db.ObtenerFotoPerfil(nombreUsuario)));
+            if (db.ObtenerFotoPerfil(nombreUsuario) != null)
+            {
+                btnUser.Source = ImageSource.FromStream(() => new MemoryStream(db.ObtenerFotoPerfil(nombreUsuario)));
+            }
             verPerfil();
+        }
+        else
+        {
+            btnUser.Source = "user.png";
         }
 
             

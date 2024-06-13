@@ -21,12 +21,17 @@ public partial class Login_Register : ContentPage
         }
         else
         {
-            Preferences.Set("nombreUsuario", txtNombre.Text);
-            login.verPerfil();
-            db.MeterUser(txtNombre.Text, txtApellidos.Text, txtEmail.Text, txtApodo.Text, txtPass.Text, "user");
-            Navigation.PopAsync();
+            try
+            {
+                Preferences.Set("nombreUsuario", txtNombre.Text);
+                login.verPerfil();
+                db.MeterUser(txtNombre.Text, txtApellidos.Text, txtEmail.Text, txtApodo.Text, txtPass.Text, "user");
+                Navigation.PopAsync();
+            }catch (Exception ex)
+            {
+                DisplayAlert("Error", "Error al registrar usuario"+ex, "Aceptar");
+            }
         }
-
     }
 
     private void btnCancelar_Clicked(object sender, EventArgs e)
@@ -57,6 +62,11 @@ public partial class Login_Register : ContentPage
         {
             lblErrorEmail.IsVisible = false;
             btnRegister.IsEnabled = true;
+            if (db.ExisteUser(txtEmail.Text))
+            {
+                lblErrorEmail.Text = "El email ya existe";
+                lblErrorEmail.IsVisible = true;
+            }
         }
         else
         {

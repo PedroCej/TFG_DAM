@@ -76,7 +76,7 @@ namespace ProyectoTFG.Datos
                 User user = new User();
                 string hashedPassword = user.HashPassword(pass);
 
-                if (apodo != null)
+                if (apodo != null&&apodo!="")
                 {
                     user = new User { Nombre = nombre, Apellidos = apellidos, Email = email, Apodo = apodo, Pass = hashedPassword, Rol = rol };
                 }
@@ -86,6 +86,8 @@ namespace ProyectoTFG.Datos
                 }
 
                 usersCollection.InsertOne(user);
+               Modelos.Email emailService = new Modelos.Email("smtp.gmail.com", 465, "incidencias.cifp.cuenca@gmail.com", "fbypevtmdklfgmwy");
+               emailService.RegisterUser(email);
             }
             else
             {
