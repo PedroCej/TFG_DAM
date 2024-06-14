@@ -12,29 +12,37 @@ public partial class Inicio_Ajustes : ContentPage
     public Inicio_Ajustes()
 	{
 		InitializeComponent();
-        user = _AppShell_Inicio.userShell;
-        entryNombre.Text = user.Nombre;
-        entryApellidos.Text = user.Apellidos;
-        lblEmail.Text = user.Email;
-        lblRol.Text = user.Rol;
-        if(user.FotoPerfil != null)
+
+        try
         {
-            btnFoto.Source = ImageSource.FromStream(() => new MemoryStream(user.FotoPerfil));
-        }
-        if(user.Opciones != null)
+            user = _AppShell_Inicio.userShell;
+            entryNombre.Text = user.Nombre;
+            entryApellidos.Text = user.Apellidos;
+            lblEmail.Text = user.Email;
+            lblRol.Text = user.Rol;
+            if (user.FotoPerfil != null)
+            {
+                btnFoto.Source = ImageSource.FromStream(() => new MemoryStream(user.FotoPerfil));
+            }
+            if (user.Opciones != null)
+            {
+                if (user.Opciones.Tema == "oscuro")
+                {
+                    oscuroTema.IsChecked = true;
+                }
+                else if (user.Opciones.Tema == "claro")
+                {
+                    claroTema.IsChecked = true;
+                }
+                else
+                {
+                    defaultTema.IsChecked = true;
+                }
+                miSlider.Value = user.Opciones.TamLetra == "default" ? 1 : Double.Parse(user.Opciones.TamLetra);
+            }
+        }catch(Exception e)
         {
-            if (user.Opciones.Tema == "oscuro")
-            {
-                oscuroTema.IsChecked = true;
-            }else if(user.Opciones.Tema == "claro")
-            {
-                claroTema.IsChecked = true;
-            }
-            else
-            {
-                defaultTema.IsChecked = true;
-            }
-            miSlider.Value = user.Opciones.TamLetra == "default" ? 1 : Double.Parse(user.Opciones.TamLetra);
+            DisplayAlert("Error", "Es posible que haya un error al cargar esta página", "Aceptar");
         }
     }
 

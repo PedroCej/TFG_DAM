@@ -1,0 +1,15 @@
+1. Ejecute el archivo del instalador con extensión ".msix".
+2. Si aparece un mensaje de error, siga los siguientes pasos para instalar el certificado del instalador:
+   - Haga clic derecho en el instalador y seleccione "Propiedades".
+   - Vaya a la pestaña "Firmas Digitales".
+   - Seleccione el certificado y pulse en "Detalles".
+3. Haga clic en "Ver certificado".
+4. Pulse "Instalar certificado...".
+5. Seleccione "Equipo local" y pulse "Siguiente".
+   - Se le pediran permisos de administrador, acepte.
+6. Elija "Colocar todos los certificados en el siguiente almacén" y pulse "Examinar...".
+7. Seleccione "Personas de confianza" y pulse "Aceptar"
+8. Pulse "Siguiente" y despues "Finalizar" para instalar el certificado.
+9. Cierre todas las ventanas abiertas.
+
+Vuelva a intentar instalar la aplicación; el mensaje de error no debería aparecer y la instalación debería proceder normalmente.

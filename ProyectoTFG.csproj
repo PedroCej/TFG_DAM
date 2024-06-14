@@ -21,7 +21,7 @@
 		<Nullable>enable</Nullable>
 
 		<!-- Display name -->
-		<ApplicationTitle>ProyectoTFG</ApplicationTitle>
+		<ApplicationTitle>APPcidencias</ApplicationTitle>
 
 		<!-- App Identifier -->
 		<ApplicationId>com.companyname.proyectotfg</ApplicationId>
@@ -36,6 +36,15 @@
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</SupportedOSPlatformVersion>
 		<TargetPlatformMinVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'windows'">10.0.17763.0</TargetPlatformMinVersion>
 		<SupportedOSPlatformVersion Condition="$([MSBuild]::GetTargetPlatformIdentifier('$(TargetFramework)')) == 'tizen'">6.5</SupportedOSPlatformVersion>
+		<GenerateAppInstallerFile>True</GenerateAppInstallerFile>
+		<AppxPackageSigningEnabled>True</AppxPackageSigningEnabled>
+		<AppxPackageSigningTimestampDigestAlgorithm>SHA256</AppxPackageSigningTimestampDigestAlgorithm>
+		<AppxAutoIncrementPackageRevision>True</AppxAutoIncrementPackageRevision>
+		<AppxSymbolPackageEnabled>True</AppxSymbolPackageEnabled>
+		<GenerateTestArtifacts>True</GenerateTestArtifacts>
+		<AppInstallerUri>https://github.com/PedroCej/TFG_DAM</AppInstallerUri>
+		<HoursBetweenUpdateChecks>0</HoursBetweenUpdateChecks>
+		<PackageCertificateThumbprint>DBF9F7BD4B0C43EA1BC5888066439D3BC18E6040</PackageCertificateThumbprint>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -65,11 +74,18 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <None Remove="%24placeholder%24.scale-400.png" />
 	  <None Remove=".gitattributes" />
 	  <None Remove=".gitignore" />
 	  <None Remove="LICENSE.txt" />
+	  <None Remove="logo.scale-400.png" />
 	  <None Remove="README.md" />
 	  <None Remove="Resources\Fonts\GibstoneTrial-Regular.ttf" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Content Include="$placeholder$.scale-400.png" />
+	  <Content Include="logo.scale-400.png" />
 	</ItemGroup>
 
 	<ItemGroup>
