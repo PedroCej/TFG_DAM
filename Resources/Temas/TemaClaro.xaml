@@ -3,20 +3,18 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProyectoTFG.Resources.Temas.TemaClaro">
 
-    <Color x:Key="ColorFondoPrimario">#BFEEB7</Color>
-    <Color x:Key="ColorFondoSecundario">#DDFAD6</Color>
-    <Color x:Key="ColorFondoLetra">#101010</Color>
+    <Color x:Key="ColorFondoPrimario">#FFF7F0</Color>
+    <Color x:Key="ColorFondoSecundario">#EAEAEA</Color>
+    <Color x:Key="ColorFondoLetra">#414141</Color>
     <Color x:Key="ColorFondoLetra2">#606060</Color>
-    <Color x:Key="ColorDestaca">#FFCC00</Color>
-    <Color x:Key="ColorDestacaNo">#101010</Color>
-
-
+    <Color x:Key="ColorDestaca">#2EF9FF</Color>
+    <Color x:Key="ColorDestacaNo">#414141</Color>
 
     <x:Double x:Key="tamanoLetra">15</x:Double>
     <x:Double x:Key="tamanoLetraTitulo">40</x:Double>
     <x:Double x:Key="tamanoLetraTitulo2">20</x:Double>
 
-    <!-- ICONOS -->
+    <!--  ICONOS  -->
     <x:String x:Key="iconoInicio">home_dark.png</x:String>
     <x:String x:Key="iconoTickets">warning_dark.png</x:String>
     <x:String x:Key="iconoTecnico">tecnico_dark.png</x:String>
@@ -27,7 +25,7 @@
     <x:String x:Key="iconoDescendente">descendente_dark.png</x:String>
 
 
-    <!-- LABELS -->
+    <!--  LABELS  -->
     <Style TargetType="Label">
         <Setter Property="CharacterSpacing" Value="2" />
         <Setter Property="FontFamily" Value="coolvetica-condensed-rg.otf" />

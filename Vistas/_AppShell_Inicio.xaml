@@ -55,31 +55,17 @@
                     FontSize="Title"
                     HorizontalOptions="Center"
                     Text="{DynamicResource user}" />
-                <ImageButton
+                <ImageButton Source="{DynamicResource imgPerfil}"
                     x:Name="imgUser"
                     Aspect="Fill"
                     BorderColor="Grey"
                     BorderWidth="2"
-                    CornerRadius="100"
-                    HeightRequest="75"
+                    CornerRadius="75"
+                    HeightRequest="100"
                     HorizontalOptions="Center"
                     VerticalOptions="Center"
-                    WidthRequest="75" />
-                <Frame
-                    Grid.Row="0"
-                    Grid.ColumnSpan="3"
-                    CornerRadius="100"
-                    HeightRequest="100"
-                    WidthRequest="100"
-                    BorderColor="Grey">
-                    <Image
-                        x:Name="imagenPerfil"
-                        Aspect="Fill"
-                        HeightRequest="100"
-                        Source="{DynamicResource imgPerfil}"
-                        WidthRequest="100" />
-
-                </Frame>
+                    WidthRequest="100" />
+               
 
             </StackLayout>
         </DataTemplate>

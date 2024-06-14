@@ -7,6 +7,7 @@ using MailKit.Net.Smtp;
 using MimeKit;
 using System;
 using System.Threading;
+using ProyectoTFG.Datos;
 
 namespace ProyectoTFG.Modelos
 {
@@ -43,9 +44,12 @@ namespace ProyectoTFG.Modelos
         public void RegisterUser(string email)
         {
             var subject = "Bienvenido a la APPcidencias del CIFP nº1 Cuenca";
-            var body = "Gracias por registrarte en APPcidencias. \tEsperamos que disfrutes usando nuestra aplicación. Ya puedes enviar las incidencias que registres en nuestro centro para que nos pongamos a solucionarlas. \nGracias por tu colaboración.";
+            var body = "Gracias por registrarte en APPcidencias. \nEsperamos que disfrutes usando nuestra aplicación. Ya puedes enviar las incidencias que registres en nuestro centro para que nos pongamos a solucionarlas lo antes posible. \nGracias por tu colaboración.";
             var emailThread = new Thread(() => SendEmail(email, subject, body));
             emailThread.Start();
         }
+
+
+
     }
 }

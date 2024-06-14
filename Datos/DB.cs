@@ -117,6 +117,8 @@ namespace ProyectoTFG.Datos
             return user;
         }
 
+    
+
         public byte[] ObtenerFotoPerfil(string email)
         {
             var filter = Builders<User>.Filter.Eq("Email", email) | Builders<User>.Filter.Eq("Apodo", email);

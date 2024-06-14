@@ -74,7 +74,7 @@ public partial class Inicio_Tecnico2 : ContentPage
         Device.BeginInvokeOnMainThread(() =>
         {
             Tickets.Clear();
-            foreach (var ticket in updatedTickets)
+            foreach (var ticket in updatedTickets.Reverse())
             {
                 Tickets.Add(ticket);
             }
@@ -92,7 +92,7 @@ public partial class Inicio_Tecnico2 : ContentPage
         Device.BeginInvokeOnMainThread(() =>
         {
             Tickets.Clear();
-            foreach (var ticket in updatedTickets)
+            foreach (var ticket in updatedTickets.Reverse())
             {
                 Tickets.Add(ticket);
             }
@@ -395,7 +395,14 @@ public partial class Inicio_Tecnico2 : ContentPage
             }
         }
         return true;*/
-        if (_AppShell_Inicio.userShell.Opciones.Tema == "oscuro") { return false; }
-        else { return true;}
+        try
+        {
+            if (_AppShell_Inicio.userShell.Opciones.Tema == "oscuro") { return false; }
+            else { return true; }
+        }
+        catch (Exception e)
+        {
+            return true;
+        }
     }
 }

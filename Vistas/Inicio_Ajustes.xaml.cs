@@ -13,8 +13,8 @@ public partial class Inicio_Ajustes : ContentPage
 	{
 		InitializeComponent();
         user = _AppShell_Inicio.userShell;
-        entryNombre.Placeholder = user.Nombre;
-        entryApellidos.Placeholder = user.Apellidos;
+        entryNombre.Text = user.Nombre;
+        entryApellidos.Text = user.Apellidos;
         lblEmail.Text = user.Email;
         lblRol.Text = user.Rol;
         if(user.FotoPerfil != null)

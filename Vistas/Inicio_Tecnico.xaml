@@ -3,8 +3,8 @@
     x:Class="ProyectoTFG.Vistas.Inicio_Tecnico"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    Shell.NavBarIsVisible="False"
-    BackgroundColor="{DynamicResource ColorFondoSecundario}">
+    BackgroundColor="{DynamicResource ColorFondoSecundario}"
+    Shell.NavBarIsVisible="False">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="0.05*" />
@@ -151,7 +151,8 @@
                                         Text="-"
                                         VerticalOptions="Center" />
                                 </HorizontalStackLayout>
-                                <Label Grid.Column="2"
+                                <Label
+                                    Grid.Column="2"
                                     LineBreakMode="TailTruncation"
                                     MaxLines="1"
                                     Text="{Binding Descripcion}"
@@ -217,10 +218,10 @@
                 <Picker
                     x:Name="CambiarPrioridad"
                     Grid.Column="0"
+                    BackgroundColor="Transparent"
                     IsVisible="False"
                     SelectedIndexChanged="CambiarPrioridad_SelectedIndexChanged"
                     TextColor="Transparent"
-                    BackgroundColor="Transparent"
                     ZIndex="10">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">
@@ -240,10 +241,10 @@
                 <Picker
                     x:Name="CambiarEstado"
                     Grid.Column="1"
+                    BackgroundColor="Transparent"
                     IsVisible="False"
                     SelectedIndexChanged="CambiarEstado_SelectedIndexChanged"
                     TextColor="Transparent"
-                    BackgroundColor="Transparent"
                     ZIndex="10">
                     <Picker.ItemsSource>
                         <x:Array Type="{x:Type x:String}">

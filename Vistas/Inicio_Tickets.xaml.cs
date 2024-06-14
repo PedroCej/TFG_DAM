@@ -340,7 +340,14 @@ public partial class Inicio_Tickets : ContentPage
             }
         }
         return true;*/
-        if (_AppShell_Inicio.userShell.Opciones.Tema == "oscuro") { return false; }
-        else { return true; }
+        try
+        {
+            if (_AppShell_Inicio.userShell.Opciones.Tema == "oscuro") { return false; }
+            else { return true; }
+        }
+        catch (Exception e)
+        {
+            return true;
+        }
     }
 }

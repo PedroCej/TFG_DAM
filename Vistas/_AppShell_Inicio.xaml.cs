@@ -31,7 +31,14 @@ namespace ProyectoTFG.Vistas
             Application.Current.Resources["user"] = user;
             if (userShell.FotoPerfil != null)
             {
-                Application.Current.Resources["imgPerfil"] = ImageSource.FromStream(() => new MemoryStream(userShell.FotoPerfil));
+                try
+                {
+                    Application.Current.Resources["imgPerfil"] = ImageSource.FromStream(() => new MemoryStream(userShell.FotoPerfil));
+                }
+                catch (Exception ex)
+                {
+                    Debug.WriteLine("Error al cargar la imagen de perfil: " + ex);
+                }
             }
             else
             {

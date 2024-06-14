@@ -1,4 +1,6 @@
 namespace ProyectoTFG.Vistas;
+
+using Microsoft.Maui.ApplicationModel.Communication;
 using ProyectoTFG.Datos;
 using ProyectoTFG.Modelos;
 using System.Collections.ObjectModel;
@@ -77,7 +79,7 @@ public partial class Inicio_Tecnico : ContentPage
         Device.BeginInvokeOnMainThread(() =>
         {
             Tickets.Clear();
-            foreach (var ticket in updatedTickets)
+            foreach (var ticket in updatedTickets.Reverse())
             {
                 Tickets.Add(ticket);
             }
@@ -95,7 +97,7 @@ public partial class Inicio_Tecnico : ContentPage
         Device.BeginInvokeOnMainThread(() =>
         {
             Tickets.Clear();
-            foreach (var ticket in updatedTickets)
+            foreach (var ticket in updatedTickets.Reverse())
             {
                 Tickets.Add(ticket);
             }
@@ -364,9 +366,9 @@ public partial class Inicio_Tecnico : ContentPage
                  if (CambiarEstado.SelectedItem.ToString() == "En proceso") ticket.AsignadoA = _AppShell_Inicio.userShell.Email;
                     ticket.Estado = CambiarEstado.SelectedItem.ToString();
                 db.UpdateTicket(ticket);
-                }
-                
+                }                
             }
+
         UpdateTickets();
     }
 
@@ -399,7 +401,14 @@ public partial class Inicio_Tecnico : ContentPage
             }
         }
         return true;*/
-        if (_AppShell_Inicio.userShell.Opciones.Tema == "oscuro") { return false; }
-        else { return true; }
+        try
+        {
+            if (_AppShell_Inicio.userShell.Opciones.Tema == "oscuro") { return false; }
+            else { return true; }
+        }
+        catch (Exception e)
+        {
+            return true;
+        }
     }
 }
